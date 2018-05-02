@@ -1,6 +1,8 @@
 import React from 'react'
 import { Tab } from 'semantic-ui-react'
+import MainPanel from './MainPanel.js'
 
+ // should put the respective components inside this Tab.Pane-s.
 const panes = [
   { menuItem: 'Tab 1', render: () => <Tab.Pane loading attached={false}>Tab 1 Content</Tab.Pane> },
   { menuItem: 'Tab 2', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },

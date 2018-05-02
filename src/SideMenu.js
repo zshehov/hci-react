@@ -10,7 +10,7 @@ export default class SideMenu extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu vertical size='large'>
+      <Menu vertical fluid>
          <Menu.Item>
           <Input icon='search' placeholder='Search mail...' />
         </Menu.Item>

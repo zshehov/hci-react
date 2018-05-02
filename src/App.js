@@ -3,21 +3,20 @@ import logo from './logo.svg';
 import Test from './Test.js'
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
+import { Container } from "semantic-ui-react"
+import MainPanel from './MainPanel.js'
 
 class App extends Component {
   render() {
     return (
+      <Container>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
 
-        <Test val="test" />  
+        <MainPanel /> 
       </div>
+
+      
+      </Container>
     );
   }
 }

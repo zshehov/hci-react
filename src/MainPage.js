@@ -6,9 +6,9 @@ import MainPanel from './MainPanel.js'
 
 function MainPage(props){
 	return(
-		<Container className="cont">
-			<Container className="MainPage-HeadCont" textAlign='justified' content={<HeadPart/>} />
-			<Container content={<MainPanel />}/>
+		<Container className="MainPage-contentWrapper">
+			<Container className="MainPage-headCont" textAlign='justified' content={<HeadPart/>} />
+			<Container className="MainPage-bodyCont" content={<MainPanel />}/>
 		</Container>
 
 	);

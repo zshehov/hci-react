@@ -5,10 +5,13 @@
 }
 
 .MainPanel-content{
-	height: 100%;
 	border-radius: 8px;
 }
 
-.SideMenu-menu {
+.overflowY-wrapper {
+	height: 92%;
 	overflow-y: auto;
+}
+.sideMenu {
+	height: 100%;
 }

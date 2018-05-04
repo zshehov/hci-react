@@ -14,6 +14,7 @@ export default class SideMenu extends Component {
          <Menu.Item>
           <Input icon='search' placeholder='Search mail...' />
         </Menu.Item>
+        <div class="kur">
         <Menu.Item name='inbox' active={activeItem === 'inbox'} onClick={this.handleItemClick}>
         
           Inbox
@@ -46,6 +47,7 @@ export default class SideMenu extends Component {
         
           Spam
         </Menu.Item>
+        </div>
       </Menu>
     )
   }

@@ -1,10 +1,14 @@
 .MainPanel-wrapper{
-	border-radius: 8px;
-	border: 1px solid ligthgrey;
 	background-color: #f5f5f5;
+	border-radius: 8px;
 	height: 83vh;
 }
 
 .MainPanel-content{
 	height: 100%;
+	border-radius: 8px;
+}
+
+.SideMenu-menu {
+	overflow-y: auto;
 }

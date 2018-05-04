@@ -1,29 +1,27 @@
 import React from 'react';
-import { Button, Icon, Container, Label, Header,Segment } from 'semantic-ui-react';
+import { Button, Icon, Container, Label, Header,Segment, Grid } from 'semantic-ui-react';
 
 function HeadPart(props){
 	return(
-		<div>
-		
-			<Container textAlign='left'>
-				<Button className="MainPage-homeButton" floated="left" color="teal" size="huge" >
+
+		<Grid className="HeadPart-content" padded='very' verticalAlign='middle' columns={15} centered container>
+			<Grid.Column width={3}>	
+				<Button className="MainPage-homeButton" floated='left' color="teal" size="huge" >
 					<Icon name="home" color="white" size="large" fitted></Icon>
 				</Button>		
-			</Container>
-
-			<Container textAlign='right'>	
-				<Button className="MainPage-homeButton" floated="right" color="teal" size="huge" >
+			</Grid.Column >
+			<Grid.Column width={9}>
+				<Header as="h1"  textAlign="center">
+					My Content
+				</Header>				
+			</Grid.Column>
+			<Grid.Column width={3}>
+				<Button className="MainPage-homeButton"  color="teal" size="huge" floated='right' >
 					<Icon name="home" size="large" fitted></Icon>
 				</Button>
-			</Container>
-
-			<Container textAlign='center'>
-				<Header as="h1" size="large" textAlign="center">
-					My Content
-				</Header>
-			</Container>
-
-		</div>
+			</Grid.Column>
+		</Grid>
+		
 		);
 }
  

@@ -4,10 +4,10 @@ import { Button, Icon, Container, Label, Header,Segment, Grid } from 'semantic-u
 function HeadPart(props){
 	return(
 
-		<Grid className="HeadPart-content" padded='very' verticalAlign='middle' columns={15} centered container>
+		<Grid className="HeadPart-content" padded='vertically' verticalAlign='middle' columns={15} centered container>
 			<Grid.Column width={3}>	
 				<Button className="MainPage-homeButton" floated='left' color="teal" size="huge" >
-					<Icon name="home" color="white" size="large" fitted></Icon>
+					<Icon name="home" size="large" fitted></Icon>
 				</Button>		
 			</Grid.Column >
 			<Grid.Column width={9}>

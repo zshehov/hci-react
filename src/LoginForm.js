@@ -47,7 +47,7 @@ class LoginForm extends Component {
   	}
     return (
     	
-    	<Modal className="prokletiq" trigger={<Button>Basic Modal</Button>} >
+    	<Modal trigger={this.props.trigger} >
     		<Modal.Header>Login Menu</Modal.Header>
 	 		<Modal.Content>
 				<Grid centered padded='vertically'>

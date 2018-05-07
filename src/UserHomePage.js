@@ -7,7 +7,7 @@ import UserContent from './UserContent.js'
 function UserHomePage(props){
 	return(
 		<Container className="UserHomePage-contentWrapper">
-			<Container textAlign='justified' content={<HeadPart/>} />
+			<Container textAlign='justified' content={<HeadPart  userName='cecko'/>}/>
 			<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
 		</Container>		
 

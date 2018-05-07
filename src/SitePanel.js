@@ -1,7 +1,11 @@
 import React from 'react'	
+
 const SitePanel = (props) => {
 	console.log('Making request to ' + props.userName + '/' + props.chosenSite + '/' + props.chosenTab);
 	const response='the result of the request'
+	if(props.chosenSite === ''){
+		return <div> Please select a website on the left </div>; 
+	}
 	switch(props.chosenTab) {
 				case 'Statistics':
 				return <div>{response} is passed as an argument</div>

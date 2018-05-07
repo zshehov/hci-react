@@ -1,8 +1,8 @@
 import React from 'react'
-import { Grid, Container } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import SideMenu from './SideMenu.js'
-import MainContent from './MainContent.js'
-import './MainPanel.css'
+import UserSiteInfo from './UserSiteInfo.js'
+import './UserContent.css'
 
 const sideMenuItems = [
 	{name : 'inbox'},
@@ -35,13 +35,12 @@ const sideMenuItems = [
 
 ];
 
-export default class MainPanel	extends React.Component{
+export default class UserContent extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = { sideMenuSelection: '', navbarSelection: '' }
 		
 		this.handleSideMenuClick = this.handleSideMenuClick.bind(this);
-		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 	}
 
 	handleSideMenuClick(selection) {
@@ -50,24 +49,17 @@ export default class MainPanel	extends React.Component{
 		// probably make a server query here
 	}
 
-
-	handleNavbarClick(selection) {
-		this.setState({navbarSelection : selection});
-		// probably make a server query here
-	}
-
-
 	render(props){		
 		return (
-			<Grid celled className="MainPanel-wrapper">
-			<Grid.Row className="MainPanel-content" stretched>
+			<Grid celled className="UserContent-grid">
+			<Grid.Row className="UserContent-wrapper" stretched>
 				<Grid.Column widescreen={4} computer={4} only="computer">
 					<SideMenu handleSideMenuClick={this.handleSideMenuClick} sideMenuItems={sideMenuItems} activeItem={this.state.sideMenuSelection} />
 				</Grid.Column>
 
 
 				<Grid.Column widescreen={12} computer={12} mobile={16} >
-					<MainContent test={this.state.sideMenuSelection}/>
+					<UserSiteInfo chosenSite={this.state.sideMenuSelection}/>
 				</Grid.Column>
 			</Grid.Row>
 	</Grid>

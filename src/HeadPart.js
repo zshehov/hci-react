@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Container, Label, Header,Segment, Grid } from 'semantic-ui-react';
+import { Button, Icon, Header, Grid } from 'semantic-ui-react';
 
 function HeadPart(props){
 	return(

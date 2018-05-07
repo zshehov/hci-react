@@ -65,8 +65,8 @@ export default class MainPanel	extends React.Component{
 				</Grid.Column>
 
 
-				<Grid.Column stretched widescreen={12} computer={12} mobile={16} >
-					<MainContent color="teal"/>
+				<Grid.Column widescreen={12} computer={12} mobile={16} >
+					<MainContent test={this.state.sideMenuSelection}/>
 				</Grid.Column>
 			</Grid.Row>
 	</Grid>

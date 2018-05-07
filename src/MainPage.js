@@ -9,7 +9,7 @@ function MainPage(props){
 		<Container className="MainPage-contentWrapper">
 			<Container className="MainPage-headCont" textAlign='justified' content={<HeadPart/>} />
 			<Container className="MainPage-bodyCont" content={<MainPanel />}/>
-		</Container>
+		</Container>		
 
 	);
 }

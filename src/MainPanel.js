@@ -50,6 +50,7 @@ export default class MainPanel	extends React.Component{
 		// probably make a server query here
 	}
 
+
 	handleNavbarClick(selection) {
 		this.setState({navbarSelection : selection});
 		// probably make a server query here

@@ -1,53 +1,58 @@
 import React, { Component } from 'react'
 import { Form, Container,Button, Grid,Input, Segment, Card, Modal,Image,Header, Message } from 'semantic-ui-react'
+import { withRouter } from "react-router-dom";
 import {validateData} from './ValidateForm.js'
 import {Redirect} from 'react-router-dom';
-import MainPage from './MainPage.js';
+import UserHomePage from './UserHomePage.js';
 
 
 class LoginForm extends Component {
+
 	constructor(props){
 		super(props);
 		this.state={user:'',
 					passwd:'',
 					error:'',
-					redirect: 'false',
-					homePage:''};
-		this.updateValue=this.updateValue.bind(this);
-		this.validateUser=this.validateUser.bind(this);
+					showLogin: false,
+		};
 	}
 
-	validateUser(event){
+	validateUser = (event) => {
 		if(this.state.error) this.setState({error:''});
 			validateData(this.state).then(
 				(response) => {
 					if(response['error']){
-						this.setState({error : "*"+response['error']});
+						this.setState({ error : "*" + response['error'] });
 					}else{
-						console.log('Success, redirecting to home page');
-						//this.setState({ redirect:'true' , homePage:'userHomePage' });
+						this.closeLogin();
+						this.props.history.push("/home");
 					}
-			},
+				},
 				(error) => {
-					this.setState({redirect:'true'});
+					console.log(error);
 				});
-	
 
 	}
 
-	updateValue(event){
+	updateValue = (event) => {
 		this.setState({
 			[event.target.name] : event.target.value
 		});
 	}
+
+	showLogin = () => {
+		this.setState({showLogin:true});
+	}
+
+	closeLogin = () => {
+		this.setState({showLogin:false});
+	}
+
   render() {
-  	if (this.state.redirect=='true'){
-  		//Should add logic for successful redirecting to user homepage.
-  		return (<p>Sorry something went wrong. Try again later!</p>);
-  	}
+  
     return (
-    	
-    	<Modal trigger={this.props.trigger} >
+
+    	<Modal trigger={<Button name='showLogin' onClick={this.showLogin} className="MainPage-homeButton"  color="teal" size="huge" floated='right' content='Login' />} open={this.state.showLogin} >
     		<Modal.Header>Login Menu</Modal.Header>
 	 		<Modal.Content>
 				<Grid centered padded='vertically'>
@@ -61,8 +66,8 @@ class LoginForm extends Component {
 			    					<Form.Field>
 			        					<Input name="passwd" type="password" placeholder='Password' value={this.state.passwd} onChange={this.updateValue} />
 			    					</Form.Field>
-			  						<Button type='submit' floated='right' padded >Cancel</Button>
-			  						<Button type='submit' color='teal' floated='right' padded>Submit</Button>
+			  						<Button type='button' floated='right' onClick={this.closeLogin} padded >Cancel</Button>
+			  						<Button type='submit' color='teal' floated='right'  padded>Submit</Button>
 			  					</Form>
 			  				</Segment>
 			  				<Header  value={this.state.error} attached ='bottom' onChange={this.updateValue} color='red' content={this.state.error}></Header>
@@ -75,4 +80,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

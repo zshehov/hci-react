@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Icon, Header, Grid, Dropdown } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import './HeadPart.css';
 
 function HeadPart(props){
 
@@ -14,7 +16,8 @@ function HeadPart(props){
 		<Grid className="HeadPart-content" padded='vertically' verticalAlign='middle' columns={15} centered container>
 			<Grid.Column width={3}>	
 				<Button className="MainPage-homeButton" floated='left' color="teal" size="huge" >
-					<Icon name="home" size="large" fitted></Icon>
+					<NavLink class="HeadPart-homeButton" to="/" exact ><Icon id name="home" size="large" fitted ></Icon></NavLink>
+					
 				</Button>		
 			</Grid.Column >
 			<Grid.Column width={9}>

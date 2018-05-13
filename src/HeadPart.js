@@ -9,16 +9,18 @@ function HeadPart(props){
 		{ key: 1, text: 'Profile', value: 1 },
 		{ key: 2, text: 'Plans', value: 2 },
 		{ key: 3, text: 'Settings', value: 3 },
+		{ key: 4, text: 'Logout', value: 4 },
 	]
 
 	return(
 
 		<Grid className="HeadPart-content" padded='vertically' verticalAlign='middle' columns={15} centered container>
 			<Grid.Column width={3}>	
-				<Button className="MainPage-homeButton" floated='left' color="teal" size="huge" >
-					<NavLink class="HeadPart-homeButton" to="/" exact ><Icon id name="home" size="large" fitted ></Icon></NavLink>
-					
-				</Button>		
+				<NavLink to="/" exact >
+					<Button color="teal" size="huge" icon>
+						<Icon  name="home" size="large" ></Icon>
+					</Button>
+				</NavLink>		
 			</Grid.Column >
 			<Grid.Column width={9}>
 				<Header as="h1"  textAlign="center">

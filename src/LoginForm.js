@@ -66,7 +66,7 @@ class LoginForm extends Component {
 			    					<Form.Field>
 			        					<Input name="passwd" type="password" placeholder='Password' value={this.state.passwd} onChange={this.updateValue} />
 			    					</Form.Field>
-			  						<Button type='button' floated='right' onClick={this.closeLogin} padded >Cancel</Button>
+			  						<Button type='button' floated='right' onClick={this.closeLogin} padded="true">Cancel</Button>
 			  						<Button type='submit' color='teal' floated='right'  padded>Submit</Button>
 			  					</Form>
 			  				</Segment>

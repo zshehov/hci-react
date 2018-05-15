@@ -17,6 +17,12 @@ class LoginForm extends Component {
 		};
 	}
 
+	componentDidMount(){
+		if(this.props.show){
+			this.setState({showLogin:true});
+		}
+	}
+
 	validateUser = (event) => {
 		if(this.state.error) this.setState({error:''});
 			validateData(this.state).then(
@@ -25,6 +31,7 @@ class LoginForm extends Component {
 						this.setState({ error : "*" + response['error'] });
 					}else{
 						this.closeLogin();
+						this.props.authenticate('user');
 						this.props.history.push("/home");
 					}
 				},
@@ -46,6 +53,7 @@ class LoginForm extends Component {
 
 	closeLogin = () => {
 		this.setState({showLogin:false});
+		this.props.history.replace('/');
 	}
 
   render() {

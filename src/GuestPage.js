@@ -17,7 +17,7 @@ class GuestPage extends Component{
 				<Grid.Column width={6}>	
 					<Button name='showSignUp' floated='right' color="teal" size="huge" content='Sign-up'/>
 						<div>
-							<LoginForm />
+							<LoginForm authenticate={this.props.authenticate}/>
 						</div>
 				</Grid.Column >
 			</Grid>

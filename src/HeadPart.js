@@ -35,7 +35,8 @@ function HeadPart(props){
 				</Button.Group>
 			</Grid.Column>
 		</Grid>
-		);
+	);
+
 }
  
 export default HeadPart

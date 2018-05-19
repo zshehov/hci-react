@@ -1,55 +1,39 @@
 import React from 'react'
-import { Menu, Segment, Icon } from 'semantic-ui-react'
+import { Segment, Icon } from 'semantic-ui-react'
 import SitePanel from './SitePanel.js'
+import { NavLink, withRouter} from 'react-router-dom'
 
-class UserSiteInfo extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = { activeItem : '' }
-	}
-	
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-  render() {
-    const { activeItem } = this.state
-    console.log(this.props.chosenSite);
+const UserSiteInfo = (props) => {
     return (
     	<div>
-      <Menu size='huge' color='teal' inverted>
-        <Menu.Item
-          name='Statistics'
-          active={activeItem === 'Statistics'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Files'
-          active={activeItem === 'Files'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Apps'
-          active={activeItem === 'Apps'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Blacklist'
-          active={activeItem === 'Blacklist'}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name='Settings'
-          active={activeItem === 'Settings'}
-          onClick={this.handleItemClick}> Settings &nbsp;<Icon name="setting" /> </Menu.Item>
-      </Menu>
-      	
-		<Segment>
-			<SitePanel userName='ceco' chosenTab={activeItem} chosenSite={this.props.chosenSite} />
-		</Segment>
-		</div>
-	
+        <div className="ui inverted menu huge teal">
+
+          <NavLink className="item" to={`${props.match.url}/statistics`}>
+            Statistics
+          </NavLink>
+
+          <NavLink className="item" to={`${props.match.url}/files`}>
+            Files
+          </NavLink>
+
+          <NavLink className="item" to={`${props.match.url}/apps`}>
+            Apps
+          </NavLink>
+
+          <NavLink className="item" to={`${props.match.url}/blacklist`}>
+            Blacklist
+          </NavLink>
+
+          <NavLink className="item" to={`${props.match.url}/settings`}>
+            Settings&nbsp;<Icon name="setting" />
+          </NavLink>
+        </div>
+        	
+    		<Segment>
+    			<SitePanel userId={props.userId} siteId={props.match.params.siteId} />
+    		</Segment>
+		  </div>
     )
-  }
 }
 
-export default UserSiteInfo
+export default withRouter(UserSiteInfo)

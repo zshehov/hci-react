@@ -3,6 +3,8 @@ import { Grid } from 'semantic-ui-react'
 import SideMenu from './SideMenu.js'
 import UserSiteInfo from './UserSiteInfo.js'
 import './UserContent.css'
+import { WithParametersRouteComponent } from './WithParametersRouteComponent.js'
+import { Route, withRouter } from 'react-router-dom'
 
 const sideMenuItems = [
 	{name : 'inbox'},
@@ -35,34 +37,27 @@ const sideMenuItems = [
 
 ];
 
-export default class UserContent extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = { sideMenuSelection: '', navbarSelection: '' }
-		
-		this.handleSideMenuClick = this.handleSideMenuClick.bind(this);
-	}
-
-	handleSideMenuClick(selection) {
+const UserContent = (props) => {
 	
-		this.setState({sideMenuSelection: selection});
-		// probably make a server query here
-	}
+		console.log("Make request for the sites of user: " + props.match.params.userId);
 
-	render(props){		
 		return (
+
 			<Grid celled className="UserContent-grid">
-			<Grid.Row className="UserContent-wrapper" stretched>
-				<Grid.Column widescreen={4} computer={4} only="computer">
-					<SideMenu handleSideMenuClick={this.handleSideMenuClick} sideMenuItems={sideMenuItems} activeItem={this.state.sideMenuSelection} />
-				</Grid.Column>
+				<Grid.Row className="UserContent-wrapper" stretched>
+					<Grid.Column widescreen={4} computer={4} only="computer">
+						<SideMenu sideMenuItems={sideMenuItems} />
+					</Grid.Column>
 
+					<Grid.Column widescreen={12} computer={12} mobile={16} >
+						<Route path={`${props.match.url}`} exact render={props => (<div>Chose a site</div>)}/>
+						<Route path={`${props.match.url}/:siteId`} render={ WithParametersRouteComponent(UserSiteInfo, {'userId' : props.match.params.userId}) } />
+					</Grid.Column>
+				</Grid.Row>
+			</Grid>
 
-				<Grid.Column widescreen={12} computer={12} mobile={16} >
-					<UserSiteInfo chosenSite={this.state.sideMenuSelection}/>
-				</Grid.Column>
-			</Grid.Row>
-	</Grid>
 		);
-	}
+
 }
+
+export default withRouter(UserContent)

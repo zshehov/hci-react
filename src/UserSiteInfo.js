@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Icon } from 'semantic-ui-react'
 import SitePanel from './SitePanel.js'
-import { NavLink, withRouter} from 'react-router-dom'
+import { NavLink, withRouter, Redirect} from 'react-router-dom'
 
 const UserSiteInfo = (props) => {
     return (

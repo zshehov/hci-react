@@ -30,6 +30,10 @@ class LoginForm extends Component {
 					}else{
 						this.closeLogin();
 						this.props.authenticate('user');
+
+						// this can be used everywhere like: sessionStorage.getItem('jwt');
+						sessionStorage.setItem("jwt",response['jwt']);
+
 						this.props.history.push("/home/"+this.state.user);
 					}
 				},

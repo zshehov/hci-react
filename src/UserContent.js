@@ -4,7 +4,7 @@ import SideMenu from './SideMenu.js'
 import UserSiteInfo from './UserSiteInfo.js'
 import './UserContent.css'
 import { WithParametersRouteComponent } from './WithParametersRouteComponent.js'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Redirect, Switch } from 'react-router-dom'
 
 const sideMenuItems = [
 	{name : 'inbox'},
@@ -48,10 +48,13 @@ const UserContent = (props) => {
 					<Grid.Column widescreen={4} computer={4} only="computer">
 						<SideMenu sideMenuItems={sideMenuItems} />
 					</Grid.Column>
-
+					
+					
 					<Grid.Column widescreen={12} computer={12} mobile={16} >
-						<Route path={`${props.match.url}`} exact render={props => (<div>Chose a site</div>)}/>
+					<Switch>
 						<Route path={`${props.match.url}/:siteId`} render={ WithParametersRouteComponent(UserSiteInfo, {'userId' : props.match.params.userId}) } />
+						<Redirect from={`${props.match.url}`} to={`${props.match.url}/${sideMenuItems[0].name}`} />
+					</Switch>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

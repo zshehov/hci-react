@@ -1,33 +1,28 @@
 import React, { Component } from 'react'
-import { Input, Menu } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
+import { NavLink, withRouter } from 'react-router-dom'
 
-export default class SideMenu extends Component {
 
-  handleItemClick = (e, { name } )=> {
-    this.props.handleSideMenuClick(name);
-    // this should call a callback injected by the parent that will make a server <query></query>
-  }
+class SideMenu extends Component {
 
   render() {    
-
     return (
-      <Menu className='sideMenu' vertical fluid>
+      <div className='ui vertical menu sideMenu'>
 
-         <Menu.Item>
-          <Input icon='search' placeholder='Search mail...' />
-        </Menu.Item>
+        <div className="item">
+          <Input icon='search' placeholder='Search sites...' />
+        </div>
 
         <div className="overflowY-wrapper">
-        
-            { this.props.sideMenuItems.map((item) => 
-                <Menu.Item key={item.name} name={item.name} active={this.props.activeItem === item.name} onClick={this.handleItemClick}>
+            { this.props.sideMenuItems.map((item) =>    
+                <NavLink className="item" to={`${this.props.match.url}/${item.name}`} key={item.name}>
                     {item.name}
-              </Menu.Item>
-
+                </NavLink>
             )}
 
         </div>
-      </Menu>
+      </div>
     )
   }
 }
+export default withRouter(SideMenu)

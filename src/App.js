@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import UserHomePage from './UserHomePage';
@@ -23,15 +23,15 @@ class App extends Component {
 
   render() {
     return (
-    	<HashRouter>
+    	<BrowserRouter>
     		<Switch>
     			<Route path="/" exact render={ (props) => 
     				(<GuestPage authenticate={this.authenticate} />)
   				} />
-    			<ProtectedRoute path="/home" exact component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
+    			<ProtectedRoute path="/home:userId" exact component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
     			<ProtectedRoute path="/admin" exact component={UserHomePage} allowAccess={this.state.amind} authenticate={this.authenticate} />
     		</Switch>
-    	</HashRouter>
+    	</BrowserRouter>
     );
   }
 }

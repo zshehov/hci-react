@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Form, Container,Button, Grid,Input, Segment, Card, Modal,Image,Header, Message } from 'semantic-ui-react'
+import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
-import {validateData} from './ValidateForm.js'
-import {Redirect} from 'react-router-dom';
-import UserHomePage from './UserHomePage.js';
+import { validateData } from './ValidateForm.js'
 
 
 class LoginForm extends Component {
@@ -64,7 +62,7 @@ class LoginForm extends Component {
     		<Modal.Header>Login Menu</Modal.Header>
 	 		<Modal.Content>
 				<Grid centered padded='vertically'>
-					<Grid.Row padded columns={1} >
+					<Grid.Row padded="true" columns={1} >
 						<Grid.Column width={8}>
 							<Segment color='teal' padded='very' size='massive' attached>
 	    						<Form onSubmit={this.validateUser}>
@@ -74,8 +72,8 @@ class LoginForm extends Component {
 			    					<Form.Field>
 			        					<Input name="passwd" type="password" placeholder='Password' value={this.state.passwd} onChange={this.updateValue} />
 			    					</Form.Field>
-			  						<Button type='button' floated='right' onClick={this.closeLogin} padded >Cancel</Button>
-			  						<Button type='submit' color='teal' floated='right'  padded>Submit</Button>
+			  						<Button type='button' floated='right' onClick={this.closeLogin} padded="true">Cancel</Button>
+			  						<Button type='submit' color='teal' floated='right'  padded="true">Submit</Button>
 			  					</Form>
 			  				</Segment>
 			  				<Header  value={this.state.error} attached ='bottom' onChange={this.updateValue} color='red' content={this.state.error}></Header>

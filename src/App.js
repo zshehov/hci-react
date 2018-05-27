@@ -16,9 +16,12 @@ class App extends Component {
 	}
 
 	authenticate = (person) => {
-		alert("user authenticate: "+this.state.user);
-		alert("admin authenticate: "+this.state.admin);
 		this.setState({[person] : true});
+        if(person=='user')
+            alert(person+" authenticate: "+this.state.user);
+        else{
+            alert(person+" authenticate: "+this.state.admin);
+        }
 	}
 
   render() {
@@ -28,8 +31,8 @@ class App extends Component {
     			<Route path="/" exact render={ (props) => 
     				(<GuestPage authenticate={this.authenticate} />)
   				} />
-    			<ProtectedRoute path="/home:userId" exact component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
-    			<ProtectedRoute path="/admin" exact component={UserHomePage} allowAccess={this.state.amind} authenticate={this.authenticate} />
+    			<ProtectedRoute path="/home/:userId"  component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
+    			<ProtectedRoute path="/admin"  component={UserHomePage} allowAccess={this.state.amind} authenticate={this.authenticate} />
     		</Switch>
     	</BrowserRouter>
     );

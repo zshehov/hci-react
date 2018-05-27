@@ -30,7 +30,7 @@ class LoginForm extends Component {
 					}else{
 						this.closeLogin();
 						this.props.authenticate('user');
-						this.props.history.push("/home");
+						this.props.history.push("/home/"+this.state.user);
 					}
 				},
 				(error) => {

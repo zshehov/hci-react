@@ -31,8 +31,8 @@ class App extends Component {
     			<Route path="/" exact render={ (props) => 
     				(<GuestPage authenticate={this.authenticate} />)
   				} />
-    			<ProtectedRoute path="/home/:userId"  component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
-    			<ProtectedRoute path="/admin"  component={UserHomePage} allowAccess={this.state.amind} authenticate={this.authenticate} />
+    			<ProtectedRoute path="/home/:userId"  component={UserHomePage} allowAccess={sessionStorage.getItem('jwt')!=null?true:false} authenticate={this.authenticate}/>
+    			<ProtectedRoute path="/admin"  component={UserHomePage} allowAccess={sessionStorage.getItem('jwt')!=null?true:false} authenticate={this.authenticate} />
     		</Switch>
     	</BrowserRouter>
     );

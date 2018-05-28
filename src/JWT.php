@@ -4,6 +4,7 @@ namespace Firebase\JWT;
 use \DomainException;
 use \InvalidArgumentException;
 use \UnexpectedValueException;
+use \ExpiredException;
 use \DateTime;
 
 /**

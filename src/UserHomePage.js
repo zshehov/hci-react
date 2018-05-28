@@ -1,19 +1,80 @@
-import React from 'react';
-import { Container } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Container, Dimmer, Loader, Segment, Image } from 'semantic-ui-react';
 import './UserHomePage.css'
 import HeadPart from './HeadPart.js'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 
-function UserHomePage(props){
-	console.log(props.match.params.userId);
-	return(
-		<Container className="UserHomePage-contentWrapper">
-			<Container textAlign='justified' content={<HeadPart userName={props.match.params.userId}/>}/>
-			<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
-		</Container>		
+class UserHomePage extends Component{
 
-	);
+	constructor(props){
+		super(props);
+		this.state={
+			accessAllowed : false,
+			errorMessage : null,
+			requestDone :false,
+		}
+	}
+
+	componentDidMount(){
+		var token = sessionStorage.getItem('jwt');
+		alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
+		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';
+		const response = 
+			fetch(URL, {
+				method: 'POST',
+				headers:{
+					'Accept': 'application/json',
+	    			'Content-Type': 'application/json',
+					'Authorization' :  token
+				},
+				body: JSON.stringify({"userId": this.props.match.params.userId})
+			}).then(
+			(response) => {
+				alert(response.status);
+				if(response.status==200){
+					alert("Verified");
+				 	this.setState({accessAllowed : true, requestDone : true});
+				}
+				else{
+					this.setState({accessAllowed : false, errorMessage : response.status + "\n" + response.statusText, requestDone : true});
+				}
+			});
+	
+
+	}
+	
+	render(){
+		if( !this.state.requestDone){
+			 return(
+			 	<Container >
+			 		<Segment padded="very" textAlign="center" style={{"height" : "100vh"}}>
+				      <Dimmer active >
+				        <Loader size='huge' inline > Loading</Loader>
+				      </Dimmer>
+				    </Segment>
+			 	</Container>
+			 		);
+		}
+		if(this.state.requestDone && this.state.accessAllowed){
+			return(
+					<Container className="UserHomePage-contentWrapper">
+						<Container textAlign='justified' content={<HeadPart userName={this.props.match.params.userId}/>}/>
+						<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
+					</Container>		
+				);
+			}else if( this.state.requestDone && !this.state.accessAllowed){
+				return (<div class="ui error message">
+						  <i class="close icon"></i>
+						  <div class="header">
+						   Error 
+						  </div>
+						  <ul class="list">
+						    <li>{this.state.errorMessage}</li>
+						  </ul>
+						</div>);
+			}
+	}
 }
 
 

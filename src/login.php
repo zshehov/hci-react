@@ -34,7 +34,7 @@ try{
 
 			$tokenId    = 3;//base64_encode(mcrypt_create_iv(32));
 			$issuedAt   = time();
-		    $notBefore  = $issuedAt + 10;             //Adding 10 seconds
+		    $notBefore  = $issuedAt - 10;             //Adding 10 seconds
 		    $expire     = $notBefore + 60;            // Adding 60 seconds
 		    $serverName = "webhost"; // Retrieve the server name from config file
     		$secretKey  = "verySecretKey";

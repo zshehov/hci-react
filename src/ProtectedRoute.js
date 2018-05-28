@@ -12,12 +12,14 @@ class ProtectedRoute extends Component{
 
 	render(){
 		if(!this.props.allowAccess){
-			alert("access allowed");
+			alert("access not allowed");
+
 			return (<Route path={this.props.path} render={()=>
 				(<LoginForm authenticate={this.props.authenticate} show={true} />)
 			} />);
 		}
 		else{
+			
 			return (<Route path={this.props.path} component={this.props.component}/>);
 		}
 	}

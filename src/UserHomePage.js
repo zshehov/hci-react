@@ -4,6 +4,7 @@ import './UserHomePage.css'
 import HeadPart from './HeadPart.js'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
+import HeaderPart from './HeaderPart'
 
 class UserHomePage extends Component{
 
@@ -18,7 +19,7 @@ class UserHomePage extends Component{
 
 	componentDidMount(){
 		var token = sessionStorage.getItem('jwt');
-		alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
+		//alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
 		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';
 		const response = 
 			fetch(URL, {
@@ -31,9 +32,9 @@ class UserHomePage extends Component{
 				body: JSON.stringify({"userId": this.props.match.params.userId})
 			}).then(
 			(response) => {
-				alert(response.status);
+				//alert(response.status);
 				if(response.status==200){
-					alert("Verified");
+					//alert("Verified");
 				 	this.setState({accessAllowed : true, requestDone : true});
 				}
 				else{
@@ -56,24 +57,25 @@ class UserHomePage extends Component{
 			 	</Container>
 			 		);
 		}
-		if(this.state.requestDone && this.state.accessAllowed){
+		else if(this.state.requestDone && this.state.accessAllowed){
 			return(
 					<Container className="UserHomePage-contentWrapper">
-						<Container textAlign='justified' content={<HeadPart userName={this.props.match.params.userId}/>}/>
+						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate} userName={this.props.match.params.userId}/>}/>
 						<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
 					</Container>		
 				);
-			}else if( this.state.requestDone && !this.state.accessAllowed){
-				return (<div class="ui error message">
-						  <i class="close icon"></i>
-						  <div class="header">
-						   Error 
-						  </div>
-						  <ul class="list">
-						    <li>{this.state.errorMessage}</li>
-						  </ul>
-						</div>);
-			}
+		}
+		else if( this.state.requestDone && !this.state.accessAllowed){
+			return (<div class="ui error message">
+					  <i class="close icon"></i>
+					  <div class="header">
+					   Error 
+					  </div>
+					  <ul class="list">
+					    <li>{this.state.errorMessage}</li>
+					  </ul>
+					</div>);
+		}
 	}
 }
 

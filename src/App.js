@@ -5,6 +5,7 @@ import 'semantic-ui-css/semantic.min.css'
 import UserHomePage from './UserHomePage';
 import GuestPage from './GuestPage';
 import ProtectedRoute from './ProtectedRoute';
+import Logout  from './Logout';
 
 class App extends Component {
 	constructor(props){
@@ -17,11 +18,6 @@ class App extends Component {
 
 	authenticate = (person) => {
 		this.setState({[person] : true});
-        if(person=='user')
-            alert(person+" authenticate: "+this.state.user);
-        else{
-            alert(person+" authenticate: "+this.state.admin);
-        }
 	}
 
   render() {
@@ -31,8 +27,9 @@ class App extends Component {
     			<Route path="/" exact render={ (props) => 
     				(<GuestPage authenticate={this.authenticate} />)
   				} />
-    			<ProtectedRoute path="/home/:userId"  component={UserHomePage} allowAccess={sessionStorage.getItem('jwt')!=null?true:false} authenticate={this.authenticate}/>
-    			<ProtectedRoute path="/admin"  component={UserHomePage} allowAccess={sessionStorage.getItem('jwt')!=null?true:false} authenticate={this.authenticate} />
+    			<ProtectedRoute path="/home/:userId"  component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
+    			<ProtectedRoute path="/admin"  component={UserHomePage} allowAccess={this.state.admin} authenticate={this.authenticate} />
+          <Route path="/logout" exact component={Logout}/>
     		</Switch>
     	</BrowserRouter>
     );

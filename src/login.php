@@ -8,7 +8,7 @@ $host = "localhost";
 $db = "web";
 $user = "user";
 $pass = "asdf";
-$query = "Select user,password from users where user=? and password=?";
+$query = "Select user,password,type from users where user=? and password=?";
 
 try{
 

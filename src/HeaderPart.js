@@ -1,6 +1,7 @@
 import React from "react"
 import { Grid, Header, Button, Icon } from 'semantic-ui-react'
 import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 import HeadPart from './HeadPart'
 
 const HeaderPart = (props) => {
@@ -13,8 +14,8 @@ const HeaderPart = (props) => {
 					</Header>				
 				</Grid.Column>
 				<Grid.Column width={6}>	
-					<Button name='showSignUp' floated='right' color="teal" size="huge" content='Sign-up'/>
 					<div>
+						<SignUpForm authenticate={props.authenticate}/>
 						<LoginForm authenticate={props.authenticate}/>
 					</div>
 				</Grid.Column >

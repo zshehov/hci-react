@@ -1,6 +1,6 @@
-export function validateData(toValidate){
+export function validateData(toValidate, validator){
 	let promise = new Promise(function(resolve,reject){
-		var resp = postReq(toValidate);
+		var resp = postReq(toValidate, validator);
 		if(resp){
 			 resolve(resp);
 		}else{
@@ -11,8 +11,9 @@ export function validateData(toValidate){
 
 }
 
-function postReq(toValidate){
-	let URL = 'http://localhost:80/web/exercise/login.php';
+function postReq(toValidate, validator){
+	let URL = 'http://localhost:80/web/exercise/' + validator + '.php';
+	alert(JSON.stringify(toValidate));
 	var response = fetch(URL, {
 		method: 'POST',
 		headers:{

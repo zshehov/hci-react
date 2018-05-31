@@ -23,7 +23,7 @@ class LoginForm extends Component {
 
 	validateUser = (event) => {
 		if(this.state.error) this.setState({error:''});
-			validateData(this.state).then(
+			validateData(this.state, 'login').then(
 				(response) => {
 					if(response['error']){
 						this.setState({ error : "*" + response['error'] });

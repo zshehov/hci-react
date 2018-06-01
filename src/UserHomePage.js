@@ -5,6 +5,7 @@ import HeadPart from './HeadPart.js'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 import HeaderPart from './HeaderPart'
+import Plans from './Plans.js'
 
 class UserHomePage extends Component{
 
@@ -41,8 +42,6 @@ class UserHomePage extends Component{
 					this.setState({accessAllowed : false, errorMessage : response.status + "\n" + response.statusText, requestDone : true});
 				}
 			});
-	
-
 	}
 	
 	render(){
@@ -60,7 +59,7 @@ class UserHomePage extends Component{
 		else if(this.state.requestDone && this.state.accessAllowed){
 			return(
 					<Container className="UserHomePage-contentWrapper">
-						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate} userName={this.props.match.params.userId}/>}/>
+						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
 						<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
 					</Container>		
 				);

@@ -47,7 +47,7 @@ class HeadPart extends Component{
 				<Button.Group color='teal' floated="right" size='huge'>
 
 					// probably should be made controlled for the parent (UserHomePage), to load the corresponding page - Profile, Plans, Settings
-					<Dropdown text={this.props.userName} onChange={this.handleClick} selection button fluid floating >
+					<Dropdown text={sessionStorage.getItem('userName')} onChange={this.handleClick} selection button fluid floating >
 						<Dropdown.Menu>
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Profile</NavLink>} />
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />

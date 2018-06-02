@@ -61,18 +61,18 @@ class UserHomePage extends Component{
 						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
 						<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
 					</Container>		
-				);
+			);
 		}
 		else if( this.state.requestDone && !this.state.accessAllowed){
-			return (<div class="ui error message">
-					  <i class="close icon"></i>
-					  <div class="header">
-					   Error 
-					  </div>
-					  <ul class="list">
-					    <li>{this.state.errorMessage}</li>
-					  </ul>
-					</div>);
+			return (
+				<div class="ui error message">
+					<i class="close icon"></i>
+					<div class="header">Error</div>
+					<ul class="list">
+						<li>{this.state.errorMessage}</li>
+					</ul>
+				</div>
+			);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { List, Button, Input} from 'semantic-ui-react'
-
+import "./SiteBlacklistTab.css"
 
 
 class Blacklist extends React.Component{
@@ -13,7 +13,17 @@ class Blacklist extends React.Component{
 			bannedIps : [
 				"10.192.161.1",
 				"168.192.122.2",
-				"17.12.12.23"
+				"17.12.12.23",
+				"168.192.122.3",
+				"17.12.12.24",
+				"168.192.122.4",
+				"17.12.12.25",
+				"168.192.123.2",
+				"17.12.12.25",
+				"168.192.126.2",
+				"17.12.12.20",
+				"168.192.120.2",
+				"17.12.12.13",
 			],
 
 			newIp : ''
@@ -55,33 +65,27 @@ class Blacklist extends React.Component{
 	}
 	render() {
 		return(
+			<div className="wrapper">
+			<List divided relaxed size="massive">
+				{this.state.bannedIps.map((item) =>
+					<List.Item key={item}>
+						<List.Content floated='left'>
+							<Button color="red" onClick={this.handleRemove.bind(this,item)} icon="x"></Button>
+						</List.Content>
+						<List.Content>
+							{item}
+						</List.Content>
+					</List.Item>
+				)}
 
-	<List divided relaxed size="massive">
-		{
-		this.state.bannedIps.map((item) =>
-			<List.Item key={item}>
-			<List.Content floated='right'>
-			<Button color="red" onClick={this.handleRemove.bind(this,item)}>Remove</Button>
-			</List.Content>
-			<List.Content>
-				{item}
-			</List.Content>
-		</List.Item>
 
+				<List.Item>
+					<Input onChange={this.handleChange} value={this.state.newIp} placeholder="IP to ban" size="mini" actionPosition='left' fluid action={ {color : "teal", icon: "plus", onClick: this.handleAdd } }/>
+				</List.Item>
 
+			</List>
+			</div>
 		)
-	}
-
-
-	<List.Item>
-		<Input onChange={this.handleChange} value={this.state.newIp} placeholder="IP to ban" size="mini" fluid action={ {color : "teal", content : "Add", onClick: this.handleAdd } }/>
-	</List.Item>
-	
-
-	</List>
-
-		)
-
 	}
 
 }

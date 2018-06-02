@@ -2,10 +2,11 @@ import React from 'react'
 import { Segment, Icon } from 'semantic-ui-react'
 import SitePanel from './SitePanel.js'
 import { NavLink, withRouter, Redirect} from 'react-router-dom'
+import './UserContent.css'
 
 const UserSiteInfo = (props) => {
     return (
-    	<div>
+    	<div className="UserSiteInfo-wrapper">
         <div className="ui inverted menu huge teal">
 
           <NavLink className="item" to={`${props.match.url}/statistics`}>
@@ -29,7 +30,7 @@ const UserSiteInfo = (props) => {
           </NavLink>
         </div>
         	
-    		<Segment>
+    		<Segment className="SitePanel-wrapper">
     			<SitePanel userId={props.userId} siteId={props.match.params.siteId} />
     		</Segment>
 		  </div>

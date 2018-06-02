@@ -21,10 +21,8 @@ class HeadPart extends Component{
 	
 
 
-	handleClick = (event) =>{
-		//this.props.history.push("/home/"+this.event.target);
-		var index = event.nativeEvent.target.selectedIndex;
-		alert(index);
+	redirectToProfile = (event) =>{
+		this.props.history.push("/home/" + sessionStorage.getItem('userName'));
 	}
 
 	render(){
@@ -45,16 +43,15 @@ class HeadPart extends Component{
 			</Grid.Column>
 			<Grid.Column width={3}>
 				<Button.Group color='teal' floated="right" size='huge'>
-
-					// probably should be made controlled for the parent (UserHomePage), to load the corresponding page - Profile, Plans, Settings
-					<Dropdown text={sessionStorage.getItem('userName')} onChange={this.handleClick} selection button fluid floating >
+					<Button  onClick={this.redirectToProfile} >{sessionStorage.getItem('userName')} </Button>
+				
+				
+					<Dropdown  icon='none' floating trigger={<Button icon size='huge' ><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
-							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Profile</NavLink>} />
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Settings</NavLink>} />
 							<MenuItem content={<NavLink to={"/logout"}>Logout</NavLink>} />
 						</Dropdown.Menu>
-						
 					</Dropdown>
 				</Button.Group>
 			</Grid.Column>

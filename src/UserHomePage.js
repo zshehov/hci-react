@@ -5,7 +5,6 @@ import HeadPart from './HeadPart.js'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 import HeaderPart from './HeaderPart'
-import Plans from './Plans.js'
 
 class UserHomePage extends Component{
 

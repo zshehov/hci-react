@@ -19,7 +19,7 @@ use Firebase\JWT\SignatureInvalidException;
 
 		if($userId == $tokenUserId){
 
-			if($userId == "petko") {
+			if($userId == "will") {
 
 				$sites = [
 					

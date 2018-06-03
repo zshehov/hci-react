@@ -44,7 +44,7 @@ try{
 		        'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
 		        'iss'  => $serverName,       // Issuer
 		        'nbf'  => $notBefore,        // Not before
-		        'exp'  => $expire,           // Expire
+		       // 'exp'  => $expire,           // Expire
 		        'data' => [                  // Data related to the signer user
 		            'userName' => $row['user'], // User name
 		        ]

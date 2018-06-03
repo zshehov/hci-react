@@ -38,11 +38,11 @@ use Firebase\JWT\SignatureInvalidException;
 
 
 		}else{
-			http_send_status(401);
+			http_response_code(401);
 			exit(1);
 		}
 	}catch (Exception $e){
-		http_send_status(401);
+		http_response_code(200);
 		// this means that something was wrong with the JWT -> expired, corrupted, idk what else
 	
 		exit(1);	

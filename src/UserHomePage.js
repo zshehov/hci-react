@@ -4,6 +4,7 @@ import './UserHomePage.css'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 import HeaderPart from './HeaderPart'
+import  Plans from './Plans.js'
 
 class UserHomePage extends Component{
 
@@ -59,6 +60,7 @@ class UserHomePage extends Component{
 					<Container className="UserHomePage-contentWrapper">
 						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
 						<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
+						<Plans/>
 					</Container>		
 			);
 		}

@@ -35,7 +35,11 @@ class LoginForm extends Component {
 						sessionStorage.setItem("accountType",response['data']['type']);
 						sessionStorage.setItem("userName",response['data']['user']);
 
-						this.props.history.push("/home/"+this.state.user);
+						if (this.props.fromGuest){
+							this.props.history.push("/");
+						} else {
+							this.props.history.push("/home/"+this.state.user);
+						}
 					}
 				},
 				(error) => {

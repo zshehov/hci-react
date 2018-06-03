@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react'
 import SideMenu from './SideMenu.js'
 import UserSiteInfo from './UserSiteInfo.js'
 import './UserContent.css'
-import { makeRequest } from './ValidateForm.js'
 import { WithParametersRouteComponent } from './WithParametersRouteComponent.js'
 import { Route, withRouter, Redirect, Switch } from 'react-router-dom'
 

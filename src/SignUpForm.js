@@ -68,7 +68,7 @@ class SignUpForm extends Component {
     	if (!this.state.isRegistered){
     		return (
     			<Modal trigger={<Button name='showSignUp' onClick={this.showSignUp} className="MainPage-homeButton"  color="teal" size="huge" floated='right' content='Sign Up' />} open={this.state.showSignUp} >
-	    			<Modal.Header>Login Menu</Modal.Header>
+	    			<Modal.Header>Register</Modal.Header>
 			 		<Modal.Content>
 						<Grid centered padded='vertically'>
 							<Grid.Row padded="true" columns={1} >
@@ -102,7 +102,7 @@ class SignUpForm extends Component {
 	    				<Segment basic padded='very' textAlign='center' size='big' color='teal' >
 	    					<Header>
 	    						Sing Up successful! :) 
-	    						<i className="green check icon padded"></i>
+	    						<i class="green check icon padded"></i>
 	    					</Header>
 	    					<Button type='button' floated='right' onClick={this.closeSignUp}  color="teal" size="huge" padded="true">Ok</Button>
 	    				</Segment>

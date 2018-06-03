@@ -10,7 +10,7 @@ const HeaderPart = (props) => {
 			<Grid className="HeadPart-content" padded='vertically' verticalAlign='middle' columns={15} centered container>
 				<Grid.Column width={9}>
 					<Header as="h1"  textAlign="left">
-						My Content
+						Professional web hosting ツ
 					</Header>				
 				</Grid.Column>
 				<Grid.Column width={6}>	

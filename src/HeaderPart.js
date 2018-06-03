@@ -7,7 +7,7 @@ import HeadPart from './HeadPart'
 const HeaderPart = (props) => {
 	if(sessionStorage.getItem("accountType")==null){
 		return (
-			<Grid className="HeadPart-content" padded='vertically' verticalAlign='middle' columns={15} centered container>
+			<Grid padded='vertically' verticalAlign='middle' columns={15} centered container>
 				<Grid.Column width={9}>
 					<Header as="h1"  textAlign="left">
 						Professional web hosting ツ

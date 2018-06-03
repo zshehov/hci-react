@@ -15,8 +15,6 @@ class UserContent extends React.Component{
 		}
 	}
 
-
-
 	componentDidMount() {
 
 		var token = sessionStorage.getItem('jwt');
@@ -65,10 +63,10 @@ class UserContent extends React.Component{
 
 		return (
 
-			<Grid celled className="UserContent-grid">
-				<Grid.Row className="UserContent-wrapper" stretched>
-					<Grid.Column widescreen={4} computer={4} only="computer">
-							<SideMenu sideMenuItems={this.state.sideMenuItems} />
+			<Grid className="UserContent-grid">
+				<Grid.Row divided className="UserContent-wrapper" stretched>
+					<Grid.Column widescreen={4} computer={4} only="computer" >
+						<SideMenu sideMenuItems={this.state.sideMenuItems} />
 					</Grid.Column>
 					
 					

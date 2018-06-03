@@ -3,13 +3,14 @@ import { Card, Image, Icon, Grid, Container, Form, Button, Popup, List, Header, 
 import { NavLink } from "react-router-dom"
 import HeaderPart from './HeaderPart'
 import './UserContent.css'
+import './SegmentColors.css'
 
 function ProfileSettings(props){
 	return (
 		<Container>
-			<Container textAlign='justified' content={<HeaderPart/>}></Container>
-			<Container>
-				<Grid celled columns={2} divided className='UserContent-grid' >
+			<Segment className="greySegment" size="mini" textAlign='justified' content={<HeaderPart/>}></Segment>
+			<Segment className="greySegment">
+				<Grid columns={2} divided className='UserContent-grid' >
 					<Grid.Row className='UserContent-wrapper'>
 						<Grid.Column width={4}>
 							<Card>
@@ -80,7 +81,7 @@ function ProfileSettings(props){
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
-			</Container>
+			</Segment>
 		</Container>
 		);
 }

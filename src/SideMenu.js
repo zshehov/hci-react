@@ -6,7 +6,7 @@ class SideMenu extends Component {
 
   render() {    
     return (
-      <div className='ui vertical menu'>
+      <div className='ui vertical menu fluid'>
 
         <div className="item">
           <Input icon='search' placeholder='Search sites...' />

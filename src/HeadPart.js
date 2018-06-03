@@ -28,7 +28,7 @@ class HeadPart extends Component{
 	render(){
 	return(
 
-		<Grid className="HeadPart-content" padded='vertically' verticalAlign='middle' columns={15} centered container>
+		<Grid padded='vertically' verticalAlign='middle' columns={15} centered container>
 			<Grid.Column width={3}>	
 				<NavLink to="/" exact >
 					<Button color="teal" size="huge" icon>

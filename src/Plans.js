@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Item, Label, Header, List, Grid } from 'semantic-ui-react'
+import { Button, Icon, Item, Label, Header, List, Grid, Segment } from 'semantic-ui-react'
 import PurchasePlanModal from './PurchasePlanModal.js'
 
 
@@ -14,7 +14,7 @@ class Plans extends React.Component {
 	render() {
 		return (
 
-			<Grid celled className="GuestPage-plans" container>
+			<Grid className="GuestPage-plans" >
 				<Grid.Row stretched>
 					<Grid.Column widescreen={16}>
 		
@@ -24,8 +24,8 @@ class Plans extends React.Component {
 							 which for the most part is totally not stubbed, no doubt. Check out the different plans we think might be relevant for such a service
 							</Header>
 
-						<Item.Group divided relaxed="very">
-							<Item>
+						<Item.Group divided as={Segment} relaxed="very">
+							<Item as={Segment}>
 								<Item.Image >
 									<Icon name="star half empty" color="teal" size="massive"/>
 								</Item.Image>

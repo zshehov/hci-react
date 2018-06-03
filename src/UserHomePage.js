@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Dimmer, Loader, Segment } from 'semantic-ui-react';
-import './UserHomePage.css'
+import './SegmentColors.css'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 import HeaderPart from './HeaderPart'
@@ -58,8 +58,8 @@ class UserHomePage extends Component{
 		else if(this.state.requestDone && this.state.accessAllowed){
 			return(
 					<Container >
-						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
-						<Container content={<UserContent />}/>
+						<Segment size="mini" className="greySegment" textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
+						<Segment className="greySegment" content={<UserContent />}/>
 					</Container>		
 			);
 		}

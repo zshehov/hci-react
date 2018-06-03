@@ -82,7 +82,7 @@ class SignUpForm extends Component {
 					        					<Input name="password" type="password" placeholder='Password' value={this.state.password} onChange={this.updateValue} />
 					    					</Form.Field>
 					    					<Form.Field>
-					        					<Input name="repeatPassword" type="password" placeholder='Repeat password' value={this.state.repeatPassword} onChange={this.updateValue} />
+					        					<Input name="repeatPassword" type="password" placeholder='Confirm password' value={this.state.repeatPassword} onChange={this.updateValue} />
 					    					</Form.Field>
 					  						<Button type='button' floated='right' onClick={this.closeSignUp} padded="true">Cancel</Button>
 					  						<Button type='submit' color='teal' floated='right'  padded="true">Submit</Button>

@@ -46,10 +46,10 @@ class HeadPart extends Component{
 					<Button  onClick={this.redirectToProfile} >{sessionStorage.getItem('userName')} </Button>
 				
 				
-					<Dropdown  icon='dont' floating trigger={<Button icon size='huge' ><Icon name='dropdown'/></Button>} >
+					<Dropdown  icon='dont'  trigger={<Button icon size='huge'><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
-							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Settings</NavLink>} />
+							<MenuItem content={<NavLink to='/profileSettings'>Settings</NavLink>} />
 							<MenuItem content={<NavLink to={"/logout"}>Logout</NavLink>} />
 						</Dropdown.Menu>
 					</Dropdown>

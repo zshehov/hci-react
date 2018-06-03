@@ -56,9 +56,9 @@ class UserHomePage extends Component{
 		}
 		else if(this.state.requestDone && this.state.accessAllowed){
 			return(
-					<Container className="UserHomePage-contentWrapper">
+					<Container >
 						<Container textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
-						<Container className="UserHomePage-bodyCont" content={<UserContent />}/>
+						<Container content={<UserContent />}/>
 					</Container>		
 			);
 		}

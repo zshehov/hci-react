@@ -64,7 +64,7 @@ class UserContent extends React.Component{
 		return (
 
 			<Grid className="UserContent-grid">
-				<Grid.Row divided className="UserContent-wrapper" stretched>
+				<Grid.Row divided stretched>
 					<Grid.Column widescreen={4} computer={4} only="computer" >
 						<SideMenu sideMenuItems={this.state.sideMenuItems} />
 					</Grid.Column>

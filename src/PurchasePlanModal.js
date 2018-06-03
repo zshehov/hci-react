@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 import SignUpForm from './SignUpForm.js'
 import LoginForm from './LoginForm.js'
-
+import './UserHomePage.css'
 const PurchasePlanModal = (props) => {
 
 

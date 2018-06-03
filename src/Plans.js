@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Icon, Item, Label, Header, List, Grid, Segment } from 'semantic-ui-react'
 import PurchasePlanModal from './PurchasePlanModal.js'
-
+import './UserContent.css'
 
 
 class Plans extends React.Component {
@@ -14,8 +14,8 @@ class Plans extends React.Component {
 	render() {
 		return (
 
-			<Grid className="GuestPage-plans" >
-				<Grid.Row stretched>
+			<Grid className="GuestPage-plans UserContent-grid">
+				<Grid.Row className='overflowY-Plans-wrapper' stretched>
 					<Grid.Column widescreen={16}>
 		
 						<Header as="h1" className="centered">Welcome to our webhosting project</Header>

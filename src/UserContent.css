@@ -8,14 +8,16 @@
 }
 
 
-.UserContent-wrapper{
-	border-radius: 8px;
-}
-
 .overflowY-wrapper {
 	height: 92%;
 	overflow-y: auto;
 }
+
+.overflowY-Plans-wrapper {
+	height: 97%;
+	overflow-y: auto;
+}
+
 .sideMenu {
 	height: 100%;
 }

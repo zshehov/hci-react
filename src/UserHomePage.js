@@ -17,6 +17,7 @@ class UserHomePage extends Component{
 	}
 
 	componentDidMount(){
+
 		var token = sessionStorage.getItem('jwt');
 		//alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
 		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';

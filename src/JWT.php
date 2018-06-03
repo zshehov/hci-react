@@ -1,10 +1,11 @@
 <?php
 
 namespace Firebase\JWT;
+require 'ExpiredException.php';
 use \DomainException;
 use \InvalidArgumentException;
 use \UnexpectedValueException;
-use \ExpiredException;
+use Firebase\JWT\ExpiredException;
 use \DateTime;
 
 /**

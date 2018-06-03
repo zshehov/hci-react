@@ -19,20 +19,50 @@ class UserContent extends React.Component{
 
 
 	componentDidMount() {
-		makeRequest("asd","get_sites").then((response) => {
 
-			let temp = response.map(item => (JSON.parse(item)));
-			this.setState({sideMenuItems : temp});
-			alert();
+		var token = sessionStorage.getItem('jwt');
+		alert(token);
+		//alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
+		let URL = 'http://localhost:80/web/exercise/get_sites.php?userName=' + this.props.match.params.userId;
+		fetch(URL, {
+			method: 'GET',
+			headers:{
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization' :  token,
+			},
+		}).then(
+		(response) => {
+			//alert(response.status);
+			if(response.status === 200){
+				console.log(response);
+				//alert("Verified");
+			 	alert("ITS OK");
+			 	return response.json();
+			
+			}
+			else {
+				// if we are here there were no exceptions in get_sites but we returned another status.
+				// this case is currently handled beforehand in AccessAllowed.php
+				alert("NOT COOL RESPONSE FROM get_sites.php");
+			}
 		})
-					
+		.then(jsonResponse => {
+			alert("Response: " + jsonResponse);
+			let temp = jsonResponse.map(item => (JSON.parse(item)));
+			this.setState({sideMenuItems : temp});
+
+		}).catch(error => {
+			// if we are here it means there was exception thrown in get_sites.php -> directly log out 
+			alert(error); alert('IT SH*TTED ITSELF'); sessionStorage.clear();this.props.history.replace("/");});
 	}
+
 	
 		
 
 	render(props) {
 		console.log("Make request for the sites of user: " + this.props.match.params.userId);
-
+ 		console.log("sites: " + this.state.sideMenuItems);
 
 		return (
 
@@ -46,7 +76,7 @@ class UserContent extends React.Component{
 					<Grid.Column widescreen={12} computer={12} mobile={16} >
 					<Switch>
 						<Route path={`${this.props.match.url}/:siteId`} render={ WithParametersRouteComponent(UserSiteInfo, {'userId' : this.props.match.params.userId}) } />
-						{ // just a pattern to only load items when they are ready to be loaded
+						{ // only load items when they are ready to be loaded
 						this.state.sideMenuItems &&
 								<Redirect from={`${this.props.match.url}`} to={`${this.props.match.url}/${this.state.sideMenuItems[0].name}`} />
 						}

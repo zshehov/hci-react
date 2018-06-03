@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Dimmer, Loader, Segment, Image } from 'semantic-ui-react';
+import { Container, Dimmer, Loader, Segment } from 'semantic-ui-react';
 import './UserHomePage.css'
-import HeadPart from './HeadPart.js'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 import HeaderPart from './HeaderPart'
@@ -21,26 +20,25 @@ class UserHomePage extends Component{
 		var token = sessionStorage.getItem('jwt');
 		//alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
 		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';
-		const response = 
-			fetch(URL, {
-				method: 'POST',
-				headers:{
-					'Accept': 'application/json',
-	    			'Content-Type': 'application/json',
-					'Authorization' :  token
-				},
-				body: JSON.stringify({"userId": this.props.match.params.userId})
-			}).then(
-			(response) => {
-				//alert(response.status);
-				if(response.status==200){
-					//alert("Verified");
-				 	this.setState({accessAllowed : true, requestDone : true});
-				}
-				else{
-					this.setState({accessAllowed : false, errorMessage : response.status + "\n" + response.statusText, requestDone : true});
-				}
-			});
+		fetch(URL, {
+			method: 'POST',
+			headers:{
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization' :  token
+			},
+			body: JSON.stringify({"userId": this.props.match.params.userId})
+		}).then(
+		(response) => {
+			//alert(response.status);
+			if(response.status === 200){
+				//alert("Verified");
+			 	this.setState({accessAllowed : true, requestDone : true});
+			}
+			else{
+				this.setState({accessAllowed : false, errorMessage : response.status + "\n" + response.statusText, requestDone : true});
+			}
+		});
 	}
 	
 	render(){

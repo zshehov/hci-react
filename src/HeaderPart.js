@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Header, Button, Icon } from 'semantic-ui-react'
+import { Grid, Header } from 'semantic-ui-react'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import HeadPart from './HeadPart'
@@ -21,12 +21,12 @@ const HeaderPart = (props) => {
 				</Grid.Column >
 			</Grid>
 			);
-	}else if(sessionStorage.getItem("accountType")=='user'){
+	}else if(sessionStorage.getItem("accountType") === 'user'){
 		//alert("we have user" + " user is : " + props.userName);
 		return(<HeadPart userName={sessionStorage.getItem('userName')} />);
 
 		
-	}else if(sessionStorage.getItem("accountType")=='admin'){
+	}else if(sessionStorage.getItem("accountType") === 'admin'){
 		return null;
 	}else{
 		return null;

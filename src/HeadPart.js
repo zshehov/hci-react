@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon, Header, Grid, Dropdown, MenuItem } from 'semantic-ui-react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './HeadPart.css';
 import { withRouter } from "react-router-dom";
 
@@ -46,7 +46,7 @@ class HeadPart extends Component{
 					<Button  onClick={this.redirectToProfile} >{sessionStorage.getItem('userName')} </Button>
 				
 				
-					<Dropdown  icon='none' floating trigger={<Button icon size='huge' ><Icon name='dropdown'/></Button>} >
+					<Dropdown  icon='dont' floating trigger={<Button icon size='huge' ><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Settings</NavLink>} />

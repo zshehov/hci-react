@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Grid, Input, Segment, Modal, Header, Container } from 'semantic-ui-react'
+import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 import { validateData } from './ValidateForm.js'
 
@@ -26,7 +26,7 @@ class SignUpForm extends Component {
 	registerUser = (event) => {
 		if(this.state.error) this.setState({error:''});
 
-		if(this.state.password != this.state.repeatPassword){
+		if(this.state.password !== this.state.repeatPassword){
 			this.setState({error: "*Passwords don't match"});
 		}
 		else{

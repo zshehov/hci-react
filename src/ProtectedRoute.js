@@ -6,9 +6,6 @@ import LoginForm from './LoginForm.js';
 
 
 class ProtectedRoute extends Component{
-	constructor(props){
-		super(props);
-	}
 
 	render(){
 		//alert(sessionStorage.getItem('jwt'));

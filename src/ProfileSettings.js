@@ -20,25 +20,26 @@ class ProfileSettings extends Component{
 	}
 
 	componentDidMount(){
-		var token = sessionStorage.getItem('jwt');
 		var queryString ='userId=' + this.props.match.params.userId;
 		try{
 			makeGetRequest(queryString,'get_profile_settings').then(
-		(response) => {
-			//alert(response.status);
-			if(response['error']){
-				this.setState({ errorMessage : response['error']});
-				//alert("Verified");
-				alert(response);
-			 	this.setState({accessAllowed : false, requestDone : true});
-			}
-			else{
-				this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'], expires : response ['expires']});
-			}
-		});
-	}catch (err){
-		//exception logic
-	}
+			(response) => {
+				//alert(response.status);
+				if(response['error']){
+					this.setState({ errorMessage : response['error']});
+					//alert("Verified");
+					alert(response);
+				 	this.setState({accessAllowed : false, requestDone : true});
+				}
+				else{
+					this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'], expires : response ['expires']});
+				}
+			}).catch(err => {
+				alert(err); alert('IT SH*TTED ITSELF IN PROFILEз'); sessionStorage.clear();this.props.history.replace("/");
+			});
+		}catch (err){
+			//exception logic
+		}
 }
 
 	render(){

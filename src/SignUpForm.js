@@ -102,7 +102,7 @@ class SignUpForm extends Component {
 	    				<Segment basic padded='very' textAlign='center' size='big' color='teal' >
 	    					<Header>
 	    						Sing Up successful! :) 
-	    						<i class="green check icon padded"></i>
+	    						<i className="green check icon padded"></i>
 	    					</Header>
 	    					<Button type='button' floated='right' onClick={this.closeSignUp}  color="teal" size="huge" padded="true">Ok</Button>
 	    				</Segment>

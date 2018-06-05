@@ -10,6 +10,7 @@ include './AccessAllowed.php';
 
 	$isAuthenticated = json_decode(authenticate(),TRUE);
 
+
 	if(isset($isAuthenticated['error'])){
 		echo $isAuthenticated['error'];
 	}

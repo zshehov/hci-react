@@ -25,7 +25,6 @@ class ProfileSettings extends Component{
 		try{
 			makeGetRequest(queryString,'get_profile_settings').then(
 		(response) => {
-			alert('plan extracted: '+response);
 			//alert(response.status);
 			if(response['error']){
 				this.setState({ errorMessage : response['error']});

@@ -1,14 +1,14 @@
 <?php
-
-include 'http://localhost:80/web/exercise/AccessAllowed.php';
+ error_reporting(-1);
+ini_set('display_errors', 'true');
+include './AccessAllowed.php';
 	
 	$host = "localhost";
 	$db = "web";
 	$user = "user";
 	$pass = "asdf";
 
-	//$isAuthenticated = json_decode(authenticate(),TRUE);
-	$isAuthenticated = ['authUser' => 'will'];
+	$isAuthenticated = json_decode(authenticate(),TRUE);
 
 	if(isset($isAuthenticated['error'])){
 		echo $isAuthenticated['error'];

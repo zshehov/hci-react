@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
-import { validateData } from './ValidateForm.js'
+import { makePostRequest } from './ValidateForm.js'
 
 
 class LoginForm extends Component {
@@ -23,7 +23,7 @@ class LoginForm extends Component {
 
 	validateUser = (event) => {
 		if(this.state.error) this.setState({error:''});
-			validateData(this.state, 'login').then(
+			makePostRequest(this.state, 'login').then(
 				(response) => {
 					if(response['error']){
 						this.setState({ error : "*" + response['error'] });

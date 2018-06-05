@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
-import { validateData } from './ValidateForm.js'
+import { makePostRequest } from './ValidateForm.js'
 
 
 class SignUpForm extends Component {
@@ -30,7 +30,7 @@ class SignUpForm extends Component {
 			this.setState({error: "*Passwords don't match"});
 		}
 		else{
-			validateData(this.state, 'signUp').then(
+			makePostRequest(this.state, 'signUp').then(
 				(response) => {
 					alert(response['error'])
 					if(response['error']){

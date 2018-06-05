@@ -27,28 +27,28 @@ class HeadPart extends Component{
 
 	render(){
 	return(
-		<Grid padded='vertically' verticalAlign='middle' columns={15} centered container>
-			<Grid.Column width={3}>	
+		<Grid padded='vertically' verticalAlign='middle' columns={15} centered container  stackable reversed>
+			<Grid.Column width={3} >	
 				<NavLink to="/" exact >
 					<Button color="teal" size="huge" icon>
 						<Icon  name="home" size="large" ></Icon>
 					</Button>
 				</NavLink>		
 			</Grid.Column >
-			<Grid.Column width={9}>
+			<Grid.Column computer={8} tablet={7} >
 				<Header as="h1"  textAlign="center">
 					Professional web hosting ツ
 				</Header>				
 			</Grid.Column>
-			<Grid.Column width={3}>
+			<Grid.Column computer={4}  tablet={5}>
 				<Button.Group color='teal' floated="right" size='huge'>
 					<Button  onClick={this.redirectToProfile} >{sessionStorage.getItem('userName')} </Button>
 				
 				
-					<Dropdown  icon='dont'  trigger={<Button icon size='huge'><Icon name='dropdown'/></Button>} >
+					<Dropdown  icon='dont'  trigger={<Button icon ><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
-							<MenuItem content={<NavLink to='/profileSettings'>Settings</NavLink>} />
+							<MenuItem content={<NavLink to={'/profileSettings/'+this.props.match.params.userId}>Settings</NavLink>} />
 							<MenuItem content={<NavLink to={"/logout"}>Logout</NavLink>} />
 						</Dropdown.Menu>
 					</Dropdown>

@@ -31,7 +31,7 @@ class App extends Component {
     			<ProtectedRoute path="/home/:userId" component={UserHomePage} allowAccess={this.state.user} authenticate={this.authenticate}/>
     			<ProtectedRoute path="/admin"  component={UserHomePage} allowAccess={this.state.admin} authenticate={this.authenticate} />
           <Route path="/logout" exact component={Logout}/>
-          <Route path="/profileSettings" exact component={ProfileSettings}/>
+          <Route path="/profileSettings/:userId" exact component={ProfileSettings}/>
     		</Switch>
     	</BrowserRouter>
     );

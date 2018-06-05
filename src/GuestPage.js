@@ -9,7 +9,7 @@ class GuestPage extends Component{
 	render(){
 		return (
 			<Container>
-				<Segment size="mini" className="greySegment" textAlign='justified' content={<HeaderPart authenticate={this.props.authenticate}/>}/>
+				<Segment size="mini" className="greySegment"  content={<HeaderPart authenticate={this.props.authenticate}/>}/>
 				<Segment className="greySegment" content={<Plans authenticate={this.props.authenticate}/>}/>
 			</Container>	
 

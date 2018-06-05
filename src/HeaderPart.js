@@ -7,13 +7,13 @@ import HeadPart from './HeadPart'
 const HeaderPart = (props) => {
 	if(sessionStorage.getItem("accountType")==null){
 		return (
-			<Grid padded='vertically' verticalAlign='middle' columns={15} centered container>
-				<Grid.Column width={9}>
+			<Grid padded='vertically' verticalAlign='middle' columns={15} centered container stackable>
+				<Grid.Column computer={8} tablet={7} >
 					<Header as="h1"  textAlign="left">
 						Professional web hosting ツ
 					</Header>				
 				</Grid.Column>
-				<Grid.Column width={6}>	
+				<Grid.Column computer={7} tablet={8}>	
 					<div>
 						<SignUpForm authenticate={props.authenticate}/>
 						<LoginForm authenticate={props.authenticate}/>

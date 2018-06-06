@@ -31,6 +31,7 @@ try{
 			$stmt = $conn->prepare($registerUser);
 			$stmt->execute([$data['user'],hash('sha1',$data['password']),'user']);
 			echo ' { "success" : "Sign Up successful :)"} ';
+			$succ = mkdir('./users/'.$data['user'], 0777, true);
 
 		}else{
 

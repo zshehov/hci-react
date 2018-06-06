@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon, Header, Grid, Dropdown, MenuItem } from 'semantic-ui-react';
+import { Button, Icon, Header, Grid, Dropdown, MenuItem, Container } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import './HeadPart.css';
 import { withRouter } from "react-router-dom";
@@ -41,18 +41,16 @@ class HeadPart extends Component{
 				</Header>				
 			</Grid.Column>
 			<Grid.Column computer={4}  tablet={5}>
-				<Button.Group color='teal' floated="right" size='huge'>
-					<Button  onClick={this.redirectToProfile} >{sessionStorage.getItem('userName')} </Button>
-				
-				
-					<Dropdown  icon='dont'  trigger={<Button icon ><Icon name='dropdown'/></Button>} >
+				<Container textAlign='right'>
+					<Button  onClick={this.redirectToProfile} attached='left' color='teal'  size='huge'>{sessionStorage.getItem('userName')} </Button>
+					<Dropdown  icon='none'  trigger={<Button color='teal'  size='huge' icon attached='right'><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
 							<MenuItem content={<NavLink to={'/profileSettings/'+sessionStorage.getItem('userName')}>Settings</NavLink>} />
 							<MenuItem content={<NavLink to={"/logout"}>Logout</NavLink>} />
 						</Dropdown.Menu>
 					</Dropdown>
-				</Button.Group>
+				</Container>
 			</Grid.Column>
 		</Grid>
 	);

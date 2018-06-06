@@ -1,5 +1,6 @@
 import React from 'react'	
 import Blacklist from './SiteBlacklistTab.js'
+import SiteStatistics from './SiteStatisticsTab.js'
 import { withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import './UserContent.css'
 const SitePanel = (props) => {
@@ -9,7 +10,7 @@ const SitePanel = (props) => {
 	return (
 
 	<Switch>
-		<Route path={`${props.match.url}/statistics`} render={props => ( <div> stats</div>)} />
+		<Route path={`${props.match.url}/statistics`} render={props => ( <SiteStatistics/>)} />
 		<Route path={`${props.match.url}/files`} render={props => ( <div> files</div>)} />
 		<Route path={`${props.match.url}/apps`} render={props => ( <div> apps</div>)} />
 		<Route path={`${props.match.url}/blacklist`} render={props => ( <Blacklist/>)} />

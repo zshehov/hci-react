@@ -27,7 +27,7 @@ include './AccessAllowed.php';
 
 				if($stmt->rowCount() == 0){
 
-					echo ' { "error" : "User still doesn\'t have a plan (in life)"} ';
+					echo ' { "info" : "User still doesn\'t have a plan (in life)"} ';
 
 				}else if($stmt->rowCount() == 1){
 					$row = $stmt->fetch();

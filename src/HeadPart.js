@@ -48,7 +48,7 @@ class HeadPart extends Component{
 					<Dropdown  icon='dont'  trigger={<Button icon ><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
 							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
-							<MenuItem content={<NavLink to={'/profileSettings/'+this.props.match.params.userId}>Settings</NavLink>} />
+							<MenuItem content={<NavLink to={'/profileSettings/'+sessionStorage.getItem('userName')}>Settings</NavLink>} />
 							<MenuItem content={<NavLink to={"/logout"}>Logout</NavLink>} />
 						</Dropdown.Menu>
 					</Dropdown>

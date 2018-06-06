@@ -32,6 +32,9 @@ class ProfileSettings extends Component{
 				 	this.setState({accessAllowed : false, requestDone : true});
 				}
 				else{
+					if(response['info']){
+						console.log(response['info']);
+					}
 					this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'], expires : response ['expires']});
 				}
 			}).catch(err => {

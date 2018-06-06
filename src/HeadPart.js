@@ -45,9 +45,9 @@ class HeadPart extends Component{
 					<Button  onClick={this.redirectToProfile} attached='left' color='teal'  size='huge'>{sessionStorage.getItem('userName')} </Button>
 					<Dropdown  icon='none'  trigger={<Button color='teal'  size='huge' icon attached='right'><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
-							<MenuItem content={<NavLink to={"home/"+sessionStorage.getItem('userName')}>Plans</NavLink>} />
-							<MenuItem content={<NavLink to={'/profileSettings/'+sessionStorage.getItem('userName')}>Settings</NavLink>} />
-							<MenuItem content={<NavLink to={"/logout"}>Logout</NavLink>} />
+							<MenuItem as={NavLink} to={"home/"+sessionStorage.getItem('userName')}>Plans</MenuItem>
+							<MenuItem as={NavLink} to={'/profileSettings/'+sessionStorage.getItem('userName')}>Settings</MenuItem>
+							<MenuItem as={NavLink} to={"/logout"}>Logout</MenuItem>
 						</Dropdown.Menu>
 					</Dropdown>
 				</Container>

@@ -47,6 +47,8 @@ const SiteStatistics = (props) => {
 			      <Statistic.Label>Uniqe visitors</Statistic.Label>
 			    </Statistic>
 
+			    <Divider hidden horizontal/>
+
 			    <Statistic>
 			      <Statistic.Value >
 			        12
@@ -54,12 +56,14 @@ const SiteStatistics = (props) => {
 			      <Statistic.Label>New visitors</Statistic.Label>
 			    </Statistic>
 
-			    <Statistic>
+			    <Divider hidden horizontal/>
+			    
+			    <Statistic color='green'>
 			      <Statistic.Value >
 			      	<Icon name='chart line'/>
 			        10%
 			      </Statistic.Value>
-			      <Statistic.Label>Visit increase</Statistic.Label>
+			      <Statistic.Label >Visit increase</Statistic.Label>
 			    </Statistic>
 			</Statistic.Group>
 		</Segment>

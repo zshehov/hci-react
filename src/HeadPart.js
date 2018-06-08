@@ -29,7 +29,7 @@ class HeadPart extends Component{
 	return(
 		<Grid padded='vertically' verticalAlign='middle' columns={15} centered container  stackable reversed>
 			<Grid.Column width={3} >	
-				<NavLink to="/" exact >
+				<NavLink to={"/"} exact >
 					<Button color="teal" size="huge" icon>
 						<Icon  name="home" size="large" ></Icon>
 					</Button>
@@ -45,7 +45,6 @@ class HeadPart extends Component{
 					<Button  onClick={this.redirectToProfile} attached='left' color='teal'  size='huge'>{sessionStorage.getItem('userName')} </Button>
 					<Dropdown  icon='none'  trigger={<Button color='teal'  size='huge' icon attached='right'><Icon name='dropdown'/></Button>} >
 						<Dropdown.Menu>
-							<MenuItem as={NavLink} to={"home/"+sessionStorage.getItem('userName')}>Plans</MenuItem>
 							<MenuItem as={NavLink} to={'/profileSettings/'+sessionStorage.getItem('userName')}>Settings</MenuItem>
 							<MenuItem as={NavLink} to={"/logout"}>Logout</MenuItem>
 						</Dropdown.Menu>

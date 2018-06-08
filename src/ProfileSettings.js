@@ -1,15 +1,18 @@
 import React, {Component} from 'react'
-import { Card, Image, Icon, Grid, Container, Form, Button, Popup, List, Header, Divider, Segment, Input, Dimmer, Loader } from 'semantic-ui-react'
+import { Card, Image, Icon, Grid, Container, Form, Button, Popup, List, Header, Divider, Segment, Input, Dimmer, Loader, Modal } from 'semantic-ui-react'
 import { NavLink, withRouter } from "react-router-dom"
 import HeaderPart from './HeaderPart'
 import './UserContent.css'
 import './SegmentColors.css'
+import Plans from './Plans'
 import { makeGetRequest } from './ValidateForm.js'
+
 
 class ProfileSettings extends Component{
 	constructor(props){
 		super(props);
 		this.state={
+			changePlan : false,
 			accessAllowed : false,
 			requestDone : false,
 			errorMessage: null,
@@ -43,7 +46,15 @@ class ProfileSettings extends Component{
 		}catch (err){
 			//exception logic
 		}
-}
+	}
+
+	showChangePlan = (props) =>{
+		this.setState({ changePlan : true});
+	}
+
+	closeChangePlan = (props) =>{
+		this.setState({ changePlan : false});
+	}
 
 	render(){
 		if( !this.state.requestDone ){
@@ -123,7 +134,11 @@ class ProfileSettings extends Component{
 										</Card.Content>
 										<Card.Content>
 											<Segment floated='right' basic >
-												<NavLink floated='right' to='#'>Change current plan <Icon  size='large' name='edit'/></NavLink>
+												<Modal trigger={<NavLink as='Button' floated='right' onClick={this.showChangePlan} to='#'>Change current plan <Icon  size='large' name='edit'/></NavLink>} open={this.state.changePlan} closeIcon={<Icon name='close' onClick={this.closeChangePlan}/>}>
+													<Modal.Content>
+														<Plans userId={sessionStorage.getItem('userName')} hidden={true} closeChangePlan={this.closeChangePlan}/>
+													</Modal.Content>
+												</Modal>
 											</Segment>
 										</Card.Content>
 									</Card>

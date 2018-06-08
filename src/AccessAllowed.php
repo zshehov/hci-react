@@ -26,6 +26,7 @@
 				//echo http_response_code(200);
 
 			}else{
+				echo 'userId: '. $userId . ' token: ' . $tokenUserId;
 				return '{ "error" : "Access not allowed." }';
 				//echo http_response_code(401);
 			}

@@ -8,7 +8,9 @@ class Plans extends React.Component {
  state = { open: false, chosenPlan : null }
 
   show = (plan) => this.setState({ open: true, chosenPlan: plan })
-  close = () => this.setState({ open: false })
+  close = () => {
+  	this.setState({ open: false });
+  }
 
 
 	render() {
@@ -17,13 +19,13 @@ class Plans extends React.Component {
 			<Grid className="GuestPage-plans UserContent-grid">
 				<Grid.Row  stretched>
 					<Grid.Column widescreen={16} >
-						<Container>		
+						<Segment basic hidden={this.props.hidden} >		
 							<Header as="h1" className="centered" >Welcome to our webhosting project</Header>
 								<Header as="h2" className="centered">
 								 It covers some basic functionality
 								 which for the most part is totally not stubbed, no doubt. Check out the different plans we think might be relevant for such a service
 								</Header>
-						</Container>
+						</Segment>
 						<Container className='overflowY-Plans-wrapper'>
 							<Item.Group divided as={Segment} relaxed="very">
 								<Item as={Segment}>
@@ -108,7 +110,7 @@ class Plans extends React.Component {
 								</Item>
 							</Item.Group>
 						</Container>
-						<PurchasePlanModal openState={this.state.open} closeModal={this.close} authenticate={this.props.authenticate} chosenPlan={this.state.chosenPlan}/>
+						<PurchasePlanModal openState={this.state.open} closeModal={this.close} authenticate={this.props.authenticate}  chosenPlan={this.state.chosenPlan} closeChangePlan={this.props.closeChangePlan}/>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

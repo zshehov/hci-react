@@ -22,7 +22,6 @@ class UserContent extends React.Component{
 		try{
 			makeGetRequest(queryString,'get_sites').then(
 			(response) => {
-				alert("Response: " + response);
 				try{
 					let temp = response.map(item => (JSON.parse(item)));
 					this.setState({sideMenuItems : temp});
@@ -39,9 +38,6 @@ class UserContent extends React.Component{
 	}
 
 	render(props) {
-		console.log("Make request for the sites of user: " + this.props.match.params.userId);
- 		console.log("sites: " + this.state.sideMenuItems);
-
 		return (
 
 			<Grid className="UserContent-grid">

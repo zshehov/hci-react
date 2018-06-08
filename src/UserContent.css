@@ -7,15 +7,22 @@
 	border-radius: 8px;
 }
 
+.sideMenuTopLevelWrapper {
+	height:100%;
+}
 
 .overflowY-wrapper {
-	height: 92%;
+	height: 80%;
 	overflow-y: auto;
 }
 
+.addSite-button {
+	margin: 10px!important;
+}
 .overflowY-Plans-wrapper {
 	height: 97%;
 	overflow-y: auto;
+
 }
 
 .sideMenu {

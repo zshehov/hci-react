@@ -12,7 +12,7 @@
 			$userId = $_GET['userId'];
 		}else if ( $_SERVER['REQUEST_METHOD'] === 'POST'){
 			$data = json_decode(file_get_contents('php://input'), true);
-			$userId = $data['userId'];
+			$userId = $data['userName'];
 		}
 
 		$headers = apache_request_headers();

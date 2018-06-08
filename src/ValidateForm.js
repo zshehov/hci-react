@@ -6,6 +6,7 @@ export function makePostRequest(request, handler){
 		}else{
 			 reject("Something went wrong. Try again later!");
 		}
+		
 	});
 	return promise;
 

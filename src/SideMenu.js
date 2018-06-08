@@ -18,6 +18,7 @@ addSite = () => {
       response => {
 
           alert("it hapn");
+          this.props.appendSite(response['success_added']);
       }).catch(err => {
         alert("first catch" + err);
       });

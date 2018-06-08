@@ -37,13 +37,18 @@ class UserContent extends React.Component{
 		}
 	}
 
+	appendSite = (newSite) => {
+		alert(newSite);
+		this.setState(prevState => ( {sideMenuItems : [...prevState.sideMenuItems , {'name' : newSite, 'site' : newSite}]} ));
+	}
+
 	render(props) {
 		return (
 
 			<Grid className="UserContent-grid">
 				<Grid.Row divided stretched>
 					<Grid.Column widescreen={4} computer={4} only="computer" >
-						<SideMenu sideMenuItems={this.state.sideMenuItems} />
+						<SideMenu sideMenuItems={this.state.sideMenuItems} appendSite={this.appendSite}/>
 					</Grid.Column>
 					
 					

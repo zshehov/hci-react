@@ -18,7 +18,7 @@ class DirectoryList extends React.Component {
 			<List.Item>
 			<List.Icon name='folder' color='yellow' />
 				<List.Content>
-					<List.Header as='a' onClick={this.toggleHide}>{this.props.dirName}</List.Header>
+					<List.Header as='a' onClick={this.toggleHide}>{this.props.dirName}{this.state.hidden ? <Icon name="triangle down"/> : <Icon name="triangle up"/> }</List.Header>
 					{ this.state.hidden === false &&
 						(<List.List>
 							{

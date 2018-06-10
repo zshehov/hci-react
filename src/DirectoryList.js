@@ -18,13 +18,13 @@ class DirectoryList extends React.Component {
 			<List.Item>
 			<List.Icon name='folder' color='yellow' />
 				<List.Content>
-					<List.Header as='a' onClick={this.toggleHide}>Directory</List.Header>
+					<List.Header as='a' onClick={this.toggleHide}>{this.props.dirName}</List.Header>
 					{ this.state.hidden === false &&
 						(<List.List>
 							{
 							this.props.fileList.map(entry => 
 								entry.dir === true ?
-									<DirectoryList fileList={entry.data}/> : 
+									<DirectoryList fileList={entry.data} dirName={entry.name}/> : 
 
 									<List.Item>
 										<List.Icon name='file' color='grey'/>

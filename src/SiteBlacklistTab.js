@@ -65,8 +65,7 @@ class Blacklist extends React.Component{
 	}
 	render() {
 		return(
-			<div className="wrapper">
-			<List divided relaxed size="massive">
+			<List divided relaxed className="wrapper" size="massive">
 				{this.state.bannedIps.map((item) =>
 					<List.Item key={item}>
 						<List.Content floated='left'>
@@ -84,7 +83,7 @@ class Blacklist extends React.Component{
 				</List.Item>
 
 			</List>
-			</div>
+			
 		)
 	}
 

@@ -16,6 +16,10 @@
 	overflow-y: auto;
 }
 
+.overflowX-navbar {
+	overflow-x: auto;
+}
+
 .addSite-button {
 	margin: 10px!important;
 }
@@ -24,6 +28,13 @@
 	overflow-y: auto;
 
 }
+
+.overflowY-SitePanel-wrapper {
+	height: 97%;
+	overflow-y: auto;
+
+}
+
 
 .sideMenu {
 	height: 100%;

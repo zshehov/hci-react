@@ -1,12 +1,12 @@
 import React from 'react'
 import { Item, Radio, Icon, List } from 'semantic-ui-react'
 import DirectoryList from './DirectoryList.js'
-
+import './UserContent.css'
 
 
 const SiteAppsTab = (props) => (
 
-	<Item.Group relaxed divided >
+	<Item.Group relaxed divided  className='overflowY-SitePanel-wrapper'>
 		<Item>
 
 			<Item><Icon size='massive' color='blue' name="database"/></Item>

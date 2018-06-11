@@ -7,7 +7,7 @@ import './UserContent.css'
 const UserSiteInfo = (props) => {
     return (
     	<div className="UserSiteInfo-wrapper">
-        <div className="ui inverted menu huge teal">
+        <div className="ui inverted menu huge teal overflowX-navbar"> 
 
           <NavLink className="item" to={`${props.match.url}/statistics`}>
             Statistics

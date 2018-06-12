@@ -18,7 +18,7 @@ class ProtectedRoute extends Component{
 		}
 		else{
 			
-			return (<Route path={this.props.path} component={this.props.component}/>);
+			return (<Route path={this.props.path} render={ (props) => <this.props.component {...props} />  } />);
 		}
 	}
 }

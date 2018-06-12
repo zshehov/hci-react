@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Icon, Header, Grid, Dropdown, MenuItem, Container } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import './HeadPart.css';
-import { withRouter } from "react-router-dom";
 
 class HeadPart extends Component{
 

@@ -47,6 +47,7 @@ try{
 		       // 'exp'  => $expire,           // Expire
 		        'data' => [                  // Data related to the signer user
 		            'userName' => $row['user'], // User name
+		        	'type' => $row['type']	
 		        ]
 		    ];
 		   

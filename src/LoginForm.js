@@ -29,7 +29,7 @@ class LoginForm extends Component {
 						this.setState({ error : "*" + response['error'] });
 					}else{
 						this.closeLogin();
-						this.props.authenticate('user');
+						this.props.authenticate(response['data']['type']);
 						// this can be used everywhere like: sessionStorage.getItem('jwt');
 						sessionStorage.setItem("jwt",response['jwt']);
 						sessionStorage.setItem("accountType",response['data']['type']);
@@ -37,8 +37,10 @@ class LoginForm extends Component {
 
 						if (this.props.fromGuest){
 							this.props.history.push("/");
-						} else {
-							this.props.history.push("/home/"+this.state.user);
+						} else if(response['data']['type'] == 'user') {
+							this.props.history.push("/home/" + this.state.user);
+						} else if( response['data']['type'] == 'admin'){
+							this.props.history.push("/admin/" + this.state.user);
 						}
 					}
 				},

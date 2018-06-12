@@ -3,6 +3,7 @@ import { Grid, Header } from 'semantic-ui-react'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import HeadPart from './HeadPart'
+import AdminHeadPart from './Admin/AdminHeadPart'
 
 const HeaderPart = (props) => {
 	if(sessionStorage.getItem("accountType")==null){
@@ -27,7 +28,7 @@ const HeaderPart = (props) => {
 
 		
 	}else if(sessionStorage.getItem("accountType") === 'admin'){
-		return null;
+		return (<AdminHeadPart/>);
 	}else{
 		return null;
 }

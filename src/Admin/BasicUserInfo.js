@@ -10,7 +10,7 @@ class BasicUserInfo extends React.Component{
 			plan : null,
 			created : null,
 			expires : null,
-			disabled : false,
+			enabled : true, //take value from db
 		}
 	}
 
@@ -33,7 +33,7 @@ class BasicUserInfo extends React.Component{
 					this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'], expires : response ['expires']});
 				}
 			}).catch(err => {
-				alert(err); alert('IT SH*TTED ITSELF IN PROFILEз'); sessionStorage.clear();this.props.history.replace("/");
+				alert(err); alert('IT SH*TTED ITSELF IN PROFILE'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic
@@ -41,8 +41,8 @@ class BasicUserInfo extends React.Component{
 	}
 
 	handleRadioClick = (event) => {
-		let change = !this.state.disabled;
-		this.setState({disabled : change});
+		let change = !this.state.enabled;
+		this.setState({enabled : change});
 	}
 	render(){		
 		return (
@@ -52,7 +52,7 @@ class BasicUserInfo extends React.Component{
 		    		
 				<Item.Content verticalAlign='middle'>
 					<Segment basic floated='right'>
-						<Radio toggle floated='right' label='Disable Account' checked={this.state.disabled} onClick={this.handleRadioClick}/>
+						<Radio toggle floated='right' label='Account Enabled' checked={this.state.enabled} onClick={this.handleRadioClick}/>
 					</Segment>
 			        <List bulleted size='huge'>
 						<Header size='large'>{this.props.match.params.userListId}</Header>

@@ -6,7 +6,7 @@ import { NavLink, withRouter, Route , Switch, Redirect } from 'react-router-dom'
 import Users from './UsersPreview'
 import BanAccount from './BanAccount'
 import AddAccount from './AddAccount'
-import WebSites from './WebSitesPreview'
+
 
 class AdminHomePage extends Component{
 
@@ -62,7 +62,7 @@ class AdminHomePage extends Component{
 							
 							<Switch>
 								<Route path={`${this.props.match.path}/users`} component={Users}/>
-								<Route path={`${this.props.match.path}/websites`} component={WebSites}/>
+								<Route path={`${this.props.match.path}/websites`} component={Users}/>
 								<Route path={`${this.props.match.path}/addAcc`} component={AddAccount}/>
 								<Route path={`${this.props.match.path}/banAcc`} component={BanAccount}/>
 							</Switch>

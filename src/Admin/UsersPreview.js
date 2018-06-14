@@ -3,6 +3,7 @@ import { makeGetRequest } from '../ValidateForm';
 import {Menu , Grid, Segment, Dimmer, Loader, Header, Input } from 'semantic-ui-react'
 import { NavLink, Switch, Route, Redirect } from "react-router-dom"
 import UsersInfo from './UsersInfo'
+import '../UserContent.css'
 
 class Users extends React.Component {
 
@@ -36,7 +37,7 @@ class Users extends React.Component {
 
 	render(){
 		return (
-			<Grid className="UserContent-grid">
+			<Grid className='UserContent-grid'>
 				<Grid.Row divided stretched>
 					<Grid.Column widescreen={4} computer={4} only="computer" >
 						<Menu vertical fluid>
@@ -63,11 +64,13 @@ class Users extends React.Component {
 					</Grid.Column>
 						
 					<Grid.Column widescreen={12} computer={12} mobile={16} >
-						<Route path={`${this.props.match.path}/:userListId`} component={UsersInfo} />
-						{ // only load items when they are ready to be loaded. there could be 0 sites for a user
-						this.state.usersList && this.state.usersList.length !== 0 &&
-								<Redirect from={`${this.props.match.url}`} to={`${this.props.match.url}/${this.state.usersList[0].userName}`} />
-						}
+						<Switch>
+							<Route path={`${this.props.match.path}/:userListId`} component={UsersInfo} />
+							{ // only load items when they are ready to be loaded. there could be 0 sites for a user
+							this.state.usersList && this.state.usersList.length !== 0 &&
+									<Redirect from={`${this.props.match.url}`} to={`${this.props.match.url}/${this.state.usersList[0].userName}`} />
+							}
+						</Switch>
 					</Grid.Column>
 					
 				</Grid.Row>

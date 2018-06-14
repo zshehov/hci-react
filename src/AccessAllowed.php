@@ -9,7 +9,11 @@
 		$userId = null;
 
 		if($_SERVER['REQUEST_METHOD'] === 'GET'){
-			$userId = $_GET['userId'];
+			if(isset($_GET['adminId'])){
+				$userId = $_GET['adminId'];
+			}else{
+				$userId = $_GET['userId'];	
+			}
 		}else if ( $_SERVER['REQUEST_METHOD'] === 'POST'){
 			$data = json_decode(file_get_contents('php://input'), true);
 			$userId = $data['userName'];

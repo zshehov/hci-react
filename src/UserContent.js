@@ -37,6 +37,16 @@ class UserContent extends React.Component{
 		}
 	}
 
+	removeSite = (site) => {
+		alert('deletiiing' + site);
+		let newSideMenu = this.state.sideMenuItems;
+
+		var index = newSideMenu.indexOf(site);
+		if (index !== -1) newSideMenu.splice(index, 1);
+
+		this.setState({sideMenuItems : newSideMenu});
+	}
+
 	appendSite = (newSite) => {
 		alert(newSite);
 		this.setState(prevState => ( {sideMenuItems : [...prevState.sideMenuItems , {'name' : newSite, 'site' : newSite}]} ));
@@ -54,7 +64,8 @@ class UserContent extends React.Component{
 					
 					<Grid.Column widescreen={12} computer={12} mobile={16} >
 					<Switch>
-						<Route path={`${this.props.match.url}/:siteId`} render={ WithParametersRouteComponent(UserSiteInfo, {'userId' : this.props.match.params.userId}) } />
+						<Route path={`${this.props.match.url}/:siteId`} render={ WithParametersRouteComponent(UserSiteInfo,
+						 {'userId' : this.props.match.params.userId , 'removeSite' : this.removeSite })} />
 						{ // only load items when they are ready to be loaded. there could be 0 sites for a user
 						this.state.sideMenuItems && this.state.sideMenuItems.length !== 0 &&
 								<Redirect from={`${this.props.match.url}`} to={`${this.props.match.url}/${this.state.sideMenuItems[0].name}`} />

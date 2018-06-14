@@ -1,5 +1,5 @@
 <?php
-	
+
 	use Firebase\JWT\JWT;
 	use Firebase\JWT\BeforeValidException;
 	use Firebase\JWT\ExpiredException;
@@ -7,7 +7,6 @@
 	error_reporting(-1);
 	ini_set('display_errors', 'true');
 	include './AccessAllowed.php';
-	
 
 	function isAdmin(){
 		$headers = apache_request_headers();

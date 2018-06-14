@@ -31,7 +31,7 @@ const UserSiteInfo = (props) => {
         </div>
         	
     		<Segment className="SitePanel-wrapper">
-    			<SitePanel userId={props.userId} siteId={props.match.params.siteId} />
+    			<SitePanel userId={props.userId} siteId={props.match.params.siteId} removeSite={props.removeSite}/>
     		</Segment>
 		  </div>
     )

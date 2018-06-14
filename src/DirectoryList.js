@@ -10,7 +10,7 @@ class DirectoryList extends React.Component {
 	toggleHide = () => {this.setState({hidden : !this.state.hidden})}
 	
 	componentWillMount() {
-		this.setState ({ hidden : false})
+		this.setState ({ hidden : true})
 	}
 	
 	render(props) {
@@ -18,8 +18,9 @@ class DirectoryList extends React.Component {
 			<List.Item>
 			<List.Icon name='folder' color='yellow' />
 				<List.Content>
-					<List.Header as='a' onClick={this.toggleHide}>{this.props.dirName}{this.state.hidden ? <Icon name="triangle down"/> : <Icon name="triangle up"/> }</List.Header>
-					{ this.state.hidden === false &&
+					<List.Header as={this.props.dirName	!== 'root' ? 'a' : 'div'} onClick={this.toggleHide}>{this.props.dirName}{
+						this.props.dirName !== 'root' ? (this.state.hidden ? <Icon name="triangle down"/> : <Icon name="triangle up"/>) : <div/>}</List.Header>
+					{ (this.state.hidden === false || this.props.dirName === 'root' )&&
 						(<List.List>
 							{
 							this.props.fileList.map(entry => 

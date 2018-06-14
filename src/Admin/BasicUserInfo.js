@@ -33,7 +33,7 @@ class BasicUserInfo extends React.Component{
 					this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'], expires : response ['expires']});
 				}
 			}).catch(err => {
-				alert(err); alert('IT SH*TTED ITSELF IN PROFILE'); sessionStorage.clear();this.props.history.replace("/");
+				alert(err); alert('IT SH*TTED ITSELF IN BASIC USER INFO'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic

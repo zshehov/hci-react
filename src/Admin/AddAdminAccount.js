@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
-import { withRouter } from "react-router-dom";
-import { makePostRequest } from './ValidateForm.js'
+import { Form, Button, Grid, Input, Segment, Modal, Header, Dropdown } from 'semantic-ui-react'
+import { withRouter, Redirect } from "react-router-dom";
+import { makePostRequest } from '../ValidateForm.js'
 
 
-class SignUpForm extends Component {
+class AddAdminAccount extends Component {
 
 	constructor(props){
 		super(props);
 		this.state={user:'',
-					password:'',
-					repeatPassword: '',
 					error:'',
-					showSignUp: false,
-					isRegistered: false
+					showSignUp: true,
+					isRegistered: false	
 		};
 	}
 
@@ -23,28 +21,31 @@ class SignUpForm extends Component {
 		}
 	}
 
+	generatePassword = () => {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
+
 	registerUser = (event) => {
 		if(this.state.error) this.setState({error:''});
-
-		if(this.state.password !== this.state.repeatPassword){
-			this.setState({error: "*Passwords don't match"});
-		}
-		else{
-			makePostRequest(this.state, 'signUp').then(
-				(response) => {
-					alert(response['error'])
-					if(response['error']){
-						alert('in error');
-						this.setState({ error : "*" + response['error'] });
-					}else{
-						this.setState({isRegistered : true});
-					}
-				},
-				(error) => {
-					console.log(error);
-				});
-		} 
-
+		
+		let pass = this.generatePassword();
+		makePostRequest({ 'user' : this.state.user, 'password' : pass}, 'signUp').then(
+			(response) => {
+				if(response['error']){
+					this.setState({ error : "*" + response['error'] });
+				}else{
+					this.setState({isRegistered : true, password : pass});
+				}
+			},
+			(error) => {
+				console.log(error);
+			});		
 	}
 
 	updateValue = (event) => {
@@ -59,7 +60,7 @@ class SignUpForm extends Component {
 
 	closeSignUp = () => {
 		this.setState({showSignUp:false});
-		this.props.history.replace('/');
+		this.props.history.replace('/admin/'+sessionStorage.getItem('userName'));
 	}
 
   render() {
@@ -67,7 +68,7 @@ class SignUpForm extends Component {
    
     	if (!this.state.isRegistered){
     		return (
-    			<Modal trigger={<Button name='showSignUp' onClick={this.showSignUp} className="MainPage-homeButton"  color="teal" size="huge" floated='right' content='Sign Up' />} open={this.state.showSignUp || this.props.showModal} >
+    			<Modal  open={this.state.showSignUp} >
 	    			<Modal.Header>Register</Modal.Header>
 			 		<Modal.Content>
 						<Grid centered padded='vertically'>
@@ -76,13 +77,7 @@ class SignUpForm extends Component {
 									<Segment color='teal' padded='very' size='massive' attached>
 			    						<Form onSubmit={this.registerUser}>
 					    					<Form.Field>
-					      						<Input name="user" type="text" placeholder='User' value={this.state.user} onChange={this.updateValue}/>
-					    					</Form.Field>
-					    					<Form.Field>
-					        					<Input name="password" type="password" placeholder='Password' value={this.state.password} onChange={this.updateValue} />
-					    					</Form.Field>
-					    					<Form.Field>
-					        					<Input name="repeatPassword" type="password" placeholder='Confirm password' value={this.state.repeatPassword} onChange={this.updateValue} />
+					      						<Input name="user" type="text" placeholder='Admin Name' value={this.state.user} onChange={this.updateValue}/>
 					    					</Form.Field>
 					  						<Button type='button' floated='right' onClick={this.closeSignUp} padded="true">Cancel</Button>
 					  						<Button type='submit' color='teal' floated='right'  padded="true">Submit</Button>
@@ -97,6 +92,7 @@ class SignUpForm extends Component {
     			);
     	}else{
     		return(
+    		<div>
     			<Modal open={this.state.showSignUp}>
     				<Modal.Content>
 	    				<Segment basic padded='very' textAlign='center' size='big' color='teal' >
@@ -104,13 +100,15 @@ class SignUpForm extends Component {
 	    						Sing Up successful! :) 
 	    						<i className="green check icon padded"></i>
 	    					</Header>
+	    					Account password is: {this.state.password}
 	    					<Button type='button' floated='right' onClick={this.closeSignUp}  color="teal" size="huge" padded="true">Ok</Button>
 	    				</Segment>
 	    			</Modal.Content>
     			</Modal>
+    		</div>
     		);
     	}
   }
 }
 
-export default withRouter(SignUpForm);
+export default withRouter(AddAdminAccount);

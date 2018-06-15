@@ -3,7 +3,7 @@ import { Menu, Grid, Dropdown, MenuItem, Container, Button, Icon, Segment } from
 import { NavLink, withRouter, Route, Switch } from 'react-router-dom';
 import Users from './UsersPreview'
 import BanAccount from './BanAccount'
-import AddAccount from './AddAccount'
+import AddAdminAccount from './AddAdminAccount'
 
 
 class AdminHeadPart extends React.Component{
@@ -20,7 +20,7 @@ class AdminHeadPart extends React.Component{
 					<Menu size='huge' fluid  color='teal' inverted tabular>
 						<Menu.Item as={NavLink} to={this.props.match.url + '/users'} component='Users' >Users</Menu.Item>
 						<Menu.Item as={NavLink} to={this.props.match.url + '/websites'} component='Users'  >WebSites</Menu.Item>
-						<Menu.Item as={NavLink} to={this.props.match.url + '/addAcc'} component='AddAccount' >Add Account</Menu.Item>
+						<Menu.Item as={NavLink} to={this.props.match.url + '/addAcc'} component='AddAdminAccount' >Add Admin Account</Menu.Item>
 						<Menu.Item as={NavLink} to={this.props.match.url + '/banAcc'} component='BanAccount' >Ban Account</Menu.Item>
 						<Menu.Menu position='right'>
 							<Dropdown  item position='right' text={sessionStorage.getItem('userName')} >

@@ -5,7 +5,7 @@ import HeaderPart from '../HeaderPart'
 import { NavLink, withRouter, Route , Switch, Redirect } from 'react-router-dom';
 import Users from './UsersPreview'
 import BanAccount from './BanAccount'
-import AddAccount from './AddAccount'
+import AddAdminAccount from './AddAdminAccount'
 
 
 class AdminHomePage extends Component{
@@ -63,10 +63,11 @@ class AdminHomePage extends Component{
 							<Switch>
 								<Route path={`${this.props.match.path}/users`} component={Users}/>
 								<Route path={`${this.props.match.path}/websites`} component={Users}/>
-								<Route path={`${this.props.match.path}/addAcc`} component={AddAccount}/>
+								<Route path={`${this.props.match.path}/addAcc`} render = { () => <AddAdminAccount {...this.props} showSignUp={true} /> }/>
 								<Route path={`${this.props.match.path}/banAcc`} component={BanAccount}/>
+								<Redirect to={`${this.props.match.url}/users`} /> 
 							</Switch>
-							<Redirect to={`${this.props.match.url}/users`} /> 
+							
 						</Segment>
 					</Container>		
 			);

@@ -29,7 +29,7 @@ try{
 
 		if($stmt->rowCount() == 0){
 			$stmt = $conn->prepare($registerUser);
-			$stmt->execute([$data['user'],hash('sha1',$data['password']),'user']);
+			$stmt->execute([$data['user'],hash('sha1',$data['password']),chooseAccountType()]);
 			echo ' { "success" : "Sign Up successful :)"} ';
 			$succ = mkdir('./users/'.$data['user'], 0777, true);
 
@@ -42,7 +42,18 @@ try{
 	echo "DB Connection failure: " . $e->getMessage();
 }
 
-
+function chooseAccountType(){
+	$headers = apache_request_headers();
+	$token = $headers["Authorization"];
+	$secretKey = "verySecretKey";
+	try{
+		$decoded = JWT::decode($token,$secretKey,array('HS512'));
+		return ($decoded->data->type == 'admin') ? 'admin' : 'user';
+		
+	}catch (Exception $e){
+		return 'user';
+	}
+}	
 
 
 ?>

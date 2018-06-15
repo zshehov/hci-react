@@ -33,7 +33,7 @@ class SiteSettingsTab extends React.Component{
 				try{
 					this.setState({radioState : response === 'running'});
 				} catch(err) {
-					// we are here if jsonResponse
+					// we are here if jsonResponse sucks for some reason
 					this.setState({radioState : false});
 				}
 			}).catch(err => {
@@ -51,12 +51,12 @@ class SiteSettingsTab extends React.Component{
 				response => {
 					if (response['success_deleted']){
 						this.props.removeSite(response['success_deleted']);
-						console.log('deleted');
 						this.props.history.replace('/home/user');
 					} else {
 						this.setState({radioState : response['state'] === "running"});
+						this.closeModal();
 					}
-					this.closeModal();
+					
 				}).catch(err => {
 					alert("first catch" + err);
 				});

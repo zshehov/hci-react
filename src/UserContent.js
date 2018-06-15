@@ -38,12 +38,18 @@ class UserContent extends React.Component{
 	}
 
 	removeSite = (site) => {
-		alert('deletiiing' + site);
+		
 		let newSideMenu = this.state.sideMenuItems;
 
-		var index = newSideMenu.indexOf(site);
+		var index = -1;
+		for (var i = 0; i < newSideMenu.length; i++) {
+			if (newSideMenu[i].name === site){
+				index = i;
+				break;
+			}
+		}
+		alert(index);
 		if (index !== -1) newSideMenu.splice(index, 1);
-
 		this.setState({sideMenuItems : newSideMenu});
 	}
 

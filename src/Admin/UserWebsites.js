@@ -22,7 +22,6 @@ class UserWebsites extends React.Component {
 				if(response['error']){
 					this.setState({ errorMessage : response['error']});
 					//alert("Verified");
-					alert(response);
 				 	this.setState({accessAllowed : false, requestDone : true});
 				}
 				else{
@@ -57,33 +56,31 @@ class UserWebsites extends React.Component {
 		
 		return (
 			<Accordion styled  fluid style={{'max-height' : '70vh', 'overflow-y' : 'auto'}}>
-				 {
-                this.state.sitesList ? [
+				{
+                	this.state.sitesList ? (
                         this.state.sitesList.map(site =>    
                         	<NavLink to={`${this.props.match.url}/${site.name}`}>
 	                        	<Accordion.Title active={this.state.activeIndex === siteCount} index={siteCount} onClick={this.handleClick} style={{'color':'teal'}}>
-						          <Icon name='dropdown' />
-						          {site.name}
+						        	<Icon name='dropdown' />
+						          	{site.name}
 						        </Accordion.Title>
 						        <Accordion.Content active={this.state.activeIndex === siteCount++}>
-						          <Route path={`${this.props.match.url}/${site.name}`} exact render={ () => <WebSites {...this.props} siteId={site.name} />} />
+						        	<Route path={`${this.props.match.url}/${site.name}`} exact render={ () => <WebSites {...this.props} siteId={site.name} />} />
 						        </Accordion.Content>
 					        </NavLink>
-                         ),
-                        <Redirect to={`${this.props.match.url}/${this.state.sitesList[0].name}`} />
-                        
-                        ]: ( <Dimmer blurring="true" inverted active >
-                  <Loader size='huge' inline > Loading</Loader>
-                </Dimmer>)
+                        )):
+                          ( <Dimmer blurring="true" inverted active >
+                  				<Loader size='huge' inline > Loading</Loader>
+                			</Dimmer>)
 
-              }
-		        
-
+           		}
+	         	{ 
+					this.state.sitesList && this.state.sitesList.length !== 0 &&
+					 <Redirect to={`${this.props.match.url}/${this.state.sitesList[0].name}`} />
+				}
 		        
 		    </Accordion>
-		   
-		    
-			)
+		    );
 	}
 }
 

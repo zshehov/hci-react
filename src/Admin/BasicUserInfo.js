@@ -1,6 +1,6 @@
 import React from 'react'
-import { Item, List, Divider, Header, Segment, Radio } from 'semantic-ui-react'
-import { makeGetRequest } from '../ValidateForm'
+import { Item, List, Divider, Header, Segment, Radio, Modal, Button } from 'semantic-ui-react'
+import { makeGetRequest , makePostRequest } from '../ValidateForm'
 
 
 class BasicUserInfo extends React.Component{
@@ -10,7 +10,9 @@ class BasicUserInfo extends React.Component{
 			plan : null,
 			created : null,
 			expires : null,
-			enabled : true, //take value from db
+			accountState : null,
+			open : false
+
 		}
 	}
 
@@ -23,14 +25,14 @@ class BasicUserInfo extends React.Component{
 				if(response['error']){
 					this.setState({ errorMessage : response['error']});
 					//alert("Verified");
-					alert(response);
 				 	this.setState({accessAllowed : false, requestDone : true});
 				}
 				else{
 					if(response['info']){
 						console.log(response['info']);
 					}
-					this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'], expires : response ['expires']});
+					this.setState({ requestDone: true, accessAllowed: true, plan : response['plan'], created : response['created'],
+					 expires : response ['expires'] , accountState : (response['accountState'] === 'enabled') });
 				}
 			}).catch(err => {
 				alert(err); alert('IT SH*TTED ITSELF IN BASIC USER INFO'); sessionStorage.clear();this.props.history.replace("/");
@@ -41,9 +43,35 @@ class BasicUserInfo extends React.Component{
 	}
 
 	handleRadioClick = (event) => {
-		let change = !this.state.enabled;
-		this.setState({enabled : change});
+		this.setState({ nextStateInText : this.state.accountState ? 'disabled' : 'enabled'});
+		this.show();
 	}
+
+	closeModal = () => {
+		this.setState({ open: false });
+	}
+
+	show = () => {
+		this.setState({open: true});
+	}
+
+	changeAccountState = (newState) => {
+		try {
+			makePostRequest( { userName : this.props.match.params.userListId, newState : newState }, "change_account_state").then(
+				response => {
+				
+						this.setState({ accountState : response['accountState'] === "enabled"});
+						this.closeModal();
+					
+					
+				}).catch(err => {
+					alert("first catch" + err);
+				});
+		} catch(err) {
+			alert("second catch");
+		}
+	}
+
 	render(){		
 		return (
 			<Item.Group divided>
@@ -52,7 +80,7 @@ class BasicUserInfo extends React.Component{
 		    		
 				<Item.Content verticalAlign='middle'>
 					<Segment basic floated='right'>
-						<Radio toggle floated='right' label='Account Enabled' checked={this.state.enabled} onClick={this.handleRadioClick}/>
+						<Radio toggle floated='right' label='Account Enabled' checked={this.state.accountState} onClick={this.handleRadioClick}/>
 					</Segment>
 			        <List bulleted size='huge'>
 						<Header size='large'>{this.props.match.params.userListId}</Header>
@@ -76,6 +104,24 @@ class BasicUserInfo extends React.Component{
 
 			   	</Item.Content>
 			</Item>
+
+			<Modal open={this.state.open} onClose={this.closeModal}>
+					<Modal.Header>Change state</Modal.Header>
+					<Modal.Content image>
+						<Modal.Description>
+							<Header>Are you sure you want to <u>{this.state.nextStateInText}</u> &nbsp;{this.props.match.params.userListId}'s account '?</Header>					
+						</Modal.Description>
+					</Modal.Content>
+
+					<Modal.Actions>
+						<Button color='red'	onClick={this.closeModal}>
+						No
+						</Button>
+						<Button color='green' onClick={this.changeAccountState.bind(this, this.state.nextStateInText)}>
+						Yes
+						</Button>
+					</Modal.Actions>
+				</Modal>
 			</Item.Group>
 
 			);

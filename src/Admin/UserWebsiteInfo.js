@@ -18,7 +18,6 @@ class WebSites extends React.Component{
 			makeGetRequest(queryString,'get_site_state').then(
 			(response) => {
 				try{
-					alert('get siteState response is: ' + response);
 					this.setState({siteState : response === 'running'});
 				} catch(err) {
 					// we are here if jsonResponse sucks for some reason
@@ -63,7 +62,6 @@ class WebSites extends React.Component{
 	}
 
 	render(){
-		alert('site state: '+this.state.siteState +' userId: '+this.props.match.params.userListId+' adminid: '+this.props.match.params.adminId );
 		return(
 			<div>
 			<Segment basic>

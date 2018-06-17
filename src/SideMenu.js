@@ -33,6 +33,11 @@ class SideMenu extends Component {
   close = () => this.setState({ open: false })
   show = () => this.setState({ open: true })
 
+  changeActiveSite = (event) => {
+    alert(event.target.getAttribute('active'));
+    event.target.getAttribute('active');
+  }
+
 
     render() {    
       return (
@@ -64,10 +69,10 @@ class SideMenu extends Component {
                 this.props.sideMenuItems ? (
 
                         this.props.sideMenuItems.map(item =>    
-                        <NavLink className="item" to={`${this.props.match.url}/${item.name}`} key={item.name}>
+                        <NavLink className="item" as={Button} to={`${this.props.match.url}/${item.name}`} key={item.name}>
                             {item.name}
                         </NavLink> )
-
+                        
                         ) : ( <Dimmer blurring="true" inverted active >
                   <Loader size='huge' inline > Loading</Loader>
                 </Dimmer>)

@@ -64,8 +64,12 @@ class Blacklist extends React.Component{
 		console.log(target);
 	}
 	render() {
+		
 		return(
-			<List divided relaxed className="wrapper" size="massive">
+			<List divided relaxed style={{'max-height' : '83vh'}} className="wrapper" size="massive">
+				<List.Item>
+					<Input onChange={this.handleChange} value={this.state.newIp} placeholder="IP to ban" size="mini" actionPosition='left' fluid action={ {color : "teal", icon: "plus", onClick: this.handleAdd } }/>
+				</List.Item>
 				{this.state.bannedIps.map((item) =>
 					<List.Item key={item}>
 						<List.Content floated='left'>
@@ -75,12 +79,7 @@ class Blacklist extends React.Component{
 							{item}
 						</List.Content>
 					</List.Item>
-				)}
-
-
-				<List.Item>
-					<Input onChange={this.handleChange} value={this.state.newIp} placeholder="IP to ban" size="mini" actionPosition='left' fluid action={ {color : "teal", icon: "plus", onClick: this.handleAdd } }/>
-				</List.Item>
+				)}	
 
 			</List>
 			

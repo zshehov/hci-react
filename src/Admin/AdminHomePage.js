@@ -6,6 +6,7 @@ import { NavLink, withRouter, Route , Switch, Redirect } from 'react-router-dom'
 import Users from './UsersPreview'
 import BanAccount from './BanAccount'
 import AddAdminAccount from './AddAdminAccount'
+import GlobalBlackList from './GlobalBlackList'
 
 
 class AdminHomePage extends Component{
@@ -65,6 +66,7 @@ class AdminHomePage extends Component{
 								<Route path={`${this.props.match.path}/websites`} component={Users}/>
 								<Route path={`${this.props.match.path}/addAcc`} render = { () => <AddAdminAccount {...this.props} showSignUp={true} /> }/>
 								<Route path={`${this.props.match.path}/banAcc`} component={BanAccount}/>
+								<Route path={`${this.props.match.path}/blacklist`} component={GlobalBlackList}/>
 								<Redirect to={`${this.props.match.url}/users`} /> 
 							</Switch>
 							

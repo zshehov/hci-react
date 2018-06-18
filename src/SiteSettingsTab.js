@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon, Button, List, Header, Grid, Form, Divider, Modal, Radio } from 'semantic-ui-react'
+import { Icon, Button, List, Header, Grid, Form, Divider, Modal, Radio, Segment } from 'semantic-ui-react'
 import { makeGetRequest, makePostRequest } from './ValidateForm.js'
 import { withRouter } from 'react-router-dom'
 
 class SiteSettingsTab extends React.Component{
 
-	state = { open: false, radioState : null, nextStateInText : null}
+	state = { open: false, radioState : null, nextStateInText : null , siteDeletion : false}
 
 	closeModal = () => {
 		this.setState({ open: false });
@@ -45,13 +45,18 @@ class SiteSettingsTab extends React.Component{
 
 	}
 
+	closeDeletionModal = () =>{
+		this.setState({ siteDeletion : false });
+		this.props.history.replace('/home/user');
+	}
+
 	changeState(newState) {
 		try {
 			makePostRequest( { userName : sessionStorage.getItem('userName'), siteUrl : this.props.siteName, newState : newState }, "change_site_state").then(
 				response => {
 					if (response['success_deleted']){
 						this.props.removeSite(response['success_deleted']);
-						this.props.history.replace('/home/user');
+						this.setState({ siteDeletion : true });
 					} else {
 						this.setState({radioState : response['state'] === "running"});
 						this.closeModal();
@@ -123,6 +128,18 @@ class SiteSettingsTab extends React.Component{
 						</Button>
 					</Modal.Actions>
 				</Modal>
+
+    			<Modal open={this.state.siteDeletion}>
+    				<Modal.Content>
+	    				<Segment basic padded='very' textAlign='center' size='huge' color='teal' >
+	    					<Header >
+	    						Site "{this.props.siteName}" deletion successful.
+	    						<i className="green check icon "></i>
+	    					</Header>
+	    					<Button type='button' floated='right' onClick={this.closeDeletionModal}  color="teal" size="huge" padded="true">Ok</Button>
+	    				</Segment>
+	    			</Modal.Content>
+    			</Modal>
 			</Grid>
 		)
 	}

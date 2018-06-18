@@ -14,7 +14,11 @@
 			}else{
 				$userId = $_GET['userId'];	
 			}
-		}else if ( $_SERVER['REQUEST_METHOD'] === 'POST'){
+		}else if ( $_SERVER['REQUEST_METHOD'] === 'POST' && $_FILES /* dem hackz  :/ */) {
+			$userId	= $_POST['userName']; 
+		}
+
+		else if( $_SERVER['REQUEST_METHOD'] === 'POST'){
 			$data = json_decode(file_get_contents('php://input'), true);
 			if(isset($data['adminId'])){
 				$userId = $data['adminId'];

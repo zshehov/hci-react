@@ -14,6 +14,7 @@ class SideMenu extends Component {
   addSite = () => {
 
     try {
+      // SHOULD HAVE A CHECK FOR REPEATING IN DB
       makePostRequest( { userName : sessionStorage.getItem('userName'), siteUrl : this.state.newSite }, "add_site").then(
         response => {
 

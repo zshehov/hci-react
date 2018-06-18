@@ -21,10 +21,10 @@ class BasicUserInfo extends React.Component{
 		try{
 			makeGetRequest(queryString,'get_basic_user_info').then(
 			(response) => {
-				//alert(response.status);
+				//console.log(response.status);
 				if(response['error']){
 					this.setState({ errorMessage : response['error']});
-					//alert("Verified");
+					//console.log("Verified");
 				 	this.setState({accessAllowed : false, requestDone : true});
 				}
 				else{
@@ -35,7 +35,7 @@ class BasicUserInfo extends React.Component{
 					 expires : response ['expires'] , accountState : (response['accountState'] === 'enabled') });
 				}
 			}).catch(err => {
-				alert(err); alert('IT SH*TTED ITSELF IN BASIC USER INFO'); sessionStorage.clear();this.props.history.replace("/");
+				console.log(err); console.log('IT SH*TTED ITSELF IN BASIC USER INFO'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic
@@ -65,10 +65,10 @@ class BasicUserInfo extends React.Component{
 					
 					
 				}).catch(err => {
-					alert("first catch" + err);
+					console.log("first catch" + err);
 				});
 		} catch(err) {
-			alert("second catch");
+			console.log("second catch");
 		}
 	}
 

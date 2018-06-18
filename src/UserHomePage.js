@@ -19,7 +19,7 @@ class UserHomePage extends Component{
 	componentDidMount(){
 
 		var token = sessionStorage.getItem('jwt');
-		//alert(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
+		//console.log(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
 		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';
 		fetch(URL, {
 			method: 'POST',
@@ -31,9 +31,9 @@ class UserHomePage extends Component{
 			body: JSON.stringify({"userId": this.props.match.params.userId})
 		}).then(
 		(response) => {
-			//alert(response.status);
+			//console.log(response.status);
 			if(response.status === 200){
-				//alert("Verified");
+				//console.log("Verified");
 			 	this.setState({accessAllowed : true, requestDone : true});
 			}
 			else{

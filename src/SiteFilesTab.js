@@ -62,12 +62,10 @@ class SiteFilesTab extends React.Component {
 			response.json())
 
 		.then(jsonResponse => {
-						alert(jsonResponse['error']);
 			if(jsonResponse['error'] !== undefined){
 				this.handleFailOpen();
 			}else{
-						this.handleSuccessOpen();
-
+				this.handleSuccessOpen();
 			}
 		})
 		.catch(error => console.error(error))

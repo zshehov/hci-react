@@ -8,9 +8,9 @@ import LoginForm from './LoginForm.js';
 class ProtectedRoute extends Component{
 
 	render(){
-		//alert(sessionStorage.getItem('jwt'));
+		//console.log(sessionStorage.getItem('jwt'));
 		if(!this.props.allowAccess && sessionStorage.getItem('jwt')==null){
-			//alert("access not allowed");
+			//console.log("access not allowed");
 
 			return (<Route path={this.props.path} render={()=>
 				(<LoginForm authenticate={this.props.authenticate} show={true} />)

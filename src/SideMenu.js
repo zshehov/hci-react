@@ -18,14 +18,13 @@ class SideMenu extends Component {
       makePostRequest( { userName : sessionStorage.getItem('userName'), siteUrl : this.state.newSite }, "add_site").then(
         response => {
 
-            alert("it hapn");
             this.props.appendSite(response['success_added']);
         }).catch(err => {
-          alert("first catch" + err);
+          console.log("first catch" + err);
         });
 
     } catch(err) {
-      alert("second catch");
+      console.log("second catch");
     }
 
     this.setState({open: false, newSite : ''});
@@ -35,7 +34,7 @@ class SideMenu extends Component {
   show = () => this.setState({ open: true })
 
   changeActiveSite = (event) => {
-    alert(event.target.getAttribute('active'));
+    console.log(event.target.getAttribute('active'));
     event.target.getAttribute('active');
   }
 

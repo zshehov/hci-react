@@ -32,9 +32,9 @@ class SignUpForm extends Component {
 		else{
 			makePostRequest(this.state, 'signUp').then(
 				(response) => {
-					alert(response['error'])
+					console.log(response['error'])
 					if(response['error']){
-						alert('in error');
+						console.log('in error');
 						this.setState({ error : "*" + response['error'] });
 					}else{
 						this.setState({isRegistered : true});

@@ -37,7 +37,7 @@ class SiteSettingsTab extends React.Component{
 					this.setState({radioState : false});
 				}
 			}).catch(err => {
-				alert(err); alert('IT SH*TTED ITSELF IN SiteSettingsTab'); sessionStorage.clear();this.props.history.replace("/");
+				console.log(err); console.log('IT SH*TTED ITSELF IN SiteSettingsTab'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic
@@ -63,10 +63,10 @@ class SiteSettingsTab extends React.Component{
 					}
 					
 				}).catch(err => {
-					alert("first catch" + err);
+					console.log("first catch" + err);
 				});
 		} catch(err) {
-			alert("second catch");
+			console.log("second catch");
 		}
 	}
 

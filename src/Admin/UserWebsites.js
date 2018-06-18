@@ -18,10 +18,10 @@ class UserWebsites extends React.Component {
 		try{
 			makeGetRequest(queryString,'get_sites').then(
 			(response) => {
-				//alert(response.status);
+				//console.log(response.status);
 				if(response['error']){
 					this.setState({ errorMessage : response['error']});
-					//alert("Verified");
+					//console.log("Verified");
 				 	this.setState({accessAllowed : false, requestDone : true});
 				}
 				else{
@@ -33,7 +33,7 @@ class UserWebsites extends React.Component {
 				}
 			}).catch(err => {
 				this.setState({sitesList : []});
-				alert(err); alert('IT SH*TTED ITSELF IN PROFILE'); sessionStorage.clear();this.props.history.replace("/");
+				console.log(err); console.log('IT SH*TTED ITSELF IN PROFILE'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic

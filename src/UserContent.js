@@ -31,7 +31,7 @@ class UserContent extends React.Component{
 					this.setState({sideMenuItems : []});
 				}
 			}).catch(err => {
-				alert(err); alert('IT SH*TTED ITSELF IN UserContent'); sessionStorage.clear();this.props.history.replace("/");
+				console.log(err); console.log('IT SH*TTED ITSELF IN UserContent'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic
@@ -54,7 +54,7 @@ class UserContent extends React.Component{
 	}
 
 	appendSite = (newSite) => {
-		alert(newSite);
+		console.log(newSite);
 		// SHOULD HAVE A CHECK FOR REPEATING
 		this.setState(prevState => ( {sideMenuItems : [...prevState.sideMenuItems , {'name' : newSite, 'site' : newSite}]} ));
 	}

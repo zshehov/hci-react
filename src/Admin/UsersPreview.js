@@ -28,7 +28,7 @@ class Users extends React.Component {
 					
 				}
 			}).catch(err => {
-				alert(err); alert('Failed to load userList'); sessionStorage.clear();this.props.history.replace("/");
+				console.log(err); console.log('Failed to load userList'); sessionStorage.clear();this.props.history.replace("/");
 			});
 		}catch (err){
 			//exception logic

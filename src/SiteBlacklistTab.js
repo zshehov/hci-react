@@ -39,12 +39,12 @@ class Blacklist extends React.Component{
 	handleAdd = () => {
 		// need to be validated on server too
 		if (! /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(this.state.newIp)) {  
-    		alert("Not an ip");
+    		console.log("Not an ip");
     		return;  
  		}  
  		// need to be validated on server too
 		if(this.state.bannedIps.includes(this.state.newIp)){
-			alert("Already present");
+			console.log("Already present");
 			return;
 		}
 		// call to server

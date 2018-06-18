@@ -23,7 +23,7 @@ const HeaderPart = (props) => {
 			</Grid>
 			);
 	}else if(sessionStorage.getItem("accountType") === 'user'){
-		//alert("we have user" + " user is : " + props.userName);
+		//console.log("we have user" + " user is : " + props.userName);
 		return(<HeadPart userName={sessionStorage.getItem('userName')} />);
 
 		

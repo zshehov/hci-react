@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Accordion, Icon, Divider } from 'semantic-ui-react'
 import SideMenu from './SideMenu.js'
 import UserSiteInfo from './UserSiteInfo.js'
 import './UserContent.css'
@@ -9,15 +9,16 @@ import { makeGetRequest } from './ValidateForm.js'
 
 class UserContent extends React.Component{
 
+	state = {activeIndex : 0}
 	constructor(props) {
 		super(props);
 		this.state = {
 			sideMenuItems : null,
+			activeIndex : 0,
 		}
 	}
 
 	componentDidMount() {
-
 		var queryString ='userId=' + this.props.match.params.userId;
 		try{
 			makeGetRequest(queryString,'get_sites').then(
@@ -48,23 +49,46 @@ class UserContent extends React.Component{
 				break;
 			}
 		}
-		alert(index);
 		if (index !== -1) newSideMenu.splice(index, 1);
 		this.setState({sideMenuItems : newSideMenu});
 	}
 
 	appendSite = (newSite) => {
 		alert(newSite);
+		// SHOULD HAVE A CHECK FOR REPEATING
 		this.setState(prevState => ( {sideMenuItems : [...prevState.sideMenuItems , {'name' : newSite, 'site' : newSite}]} ));
 	}
 
+handleClick = (e, titleProps) => {
+		const { index } = titleProps
+		const { activeIndex } = this.state
+		const newIndex = activeIndex === index ? -1 : index
+
+		this.setState({ activeIndex: newIndex })
+	}
 	render(props) {
 		return (
 
 			<Grid className="UserContent-grid">
 				<Grid.Row divided stretched>
+					<Grid.Column mobile={16} only="mobile" >
+										
+	
+						<Accordion>
+							<Accordion.Title active={this.state.activeIndex === 0} index={0} onClick={this.handleClick}>
+								<Icon name='dropdown' />
+								Websites
+							</Accordion.Title>
+							<Accordion.Content active={this.state.activeIndex === 0} content={<SideMenu sideMenuItems={this.state.sideMenuItems} appendSite={this.appendSite}/>} />
+
+						</Accordion>
+						<Divider/>
+					</Grid.Column>
+
 					<Grid.Column widescreen={4} computer={4} only="computer" >
+										
 						<SideMenu sideMenuItems={this.state.sideMenuItems} appendSite={this.appendSite}/>
+
 					</Grid.Column>
 					
 					

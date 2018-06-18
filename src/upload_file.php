@@ -22,7 +22,7 @@
 			echo json_encode(['error' => 'failed to upload']);
 			exit(1);
 		}
-		move_uploaded_file($_FILES['file']['tmp_name'], $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
+		move_uploaded_file($_FILES['file']['tmp_name'], 'users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
 
 		echo json_encode(['success' => 'succeeded in uploading']);
 		

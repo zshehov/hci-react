@@ -49,7 +49,7 @@ export function makeGetRequest(queryString, handler){
 }
 
 function getReq(queryString, handler){
-	let URL = 'http://localhost:80/web/exercise/' + handler + ".php?" + queryString;
+	let URL = 'localhost:80/web/exercise/' + handler + ".php?" + queryString;
 	//console.log(JSON.stringify(payload));
 	var fetchResponse = fetch(URL, {
 		method: 'GET',

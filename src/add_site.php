@@ -3,7 +3,7 @@
 
 	$host = "localhost";
 	$db = "web";
-	$user = "user";
+	$user = "root";
 	$pass = "asdf";
 
 
@@ -26,21 +26,15 @@
 		$siteUrl = $data['siteUrl'];
 
 		$prepareQuery = 'select userId from users where user = ?';
-		$query = 'insert into user_sites (userId, site_title, site_url) values ((select userId from users where user = ?), ?, ?)';
+		$query = 'insert into user_sites (userId, siteUrl) values ((select userId from users where user = ?), ?)';
 		try{
 
 			$conn = new PDO ("mysql:host=$host;dbname=$db;port=3306;charset=utf8",$user,$pass);
 			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		 
 			$stmt = $conn->prepare($query);
-			$stmt->execute([$userName, $siteUrl, $siteUrl]);
-			/*
-			$dbSites = $stmt->fetchAll();
+			$stmt->execute([$userName, $siteUrl]);
 
-			for ($i = 0; $i < count($dbSites) ; $i++) { 
-				array_push($sites, '{"name": "' . $dbSites[$i]['site_url'] . '", "site": "' . $dbSites[$i]['site_title'] . '"}');
-			}
-			*/
 			echo json_encode(["success_added" => $siteUrl]);
 			exit(0);
 			

@@ -5,7 +5,7 @@ include './AccessAllowed.php';
 	
 	$host = "localhost";
 	$db = "web";
-	$user = "user";
+	$user = "root";
 	$pass = "asdf";
 
 	$isAuthenticated = json_decode(authenticate(),TRUE);

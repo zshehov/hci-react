@@ -6,7 +6,7 @@
 
 	$host = "localhost";
 	$db = "web";
-	$user = "user";
+	$user = "root";
 	$pass = "asdf";
 
 
@@ -23,7 +23,7 @@
 	}
 	else if(isset($isAuthenticated['authUser'])){
 
-		$query = 'Select site_url, site_title from user_sites INNER JOIN users ON user_sites.userId=users.UserId where user=?';
+		$query = 'Select siteUrl from user_sites INNER JOIN users ON user_sites.userId=users.UserId where user=?';
 		try{
 
 			$conn = new PDO ("mysql:host=$host;dbname=$db;port=3306;charset=utf8",$user,$pass);
@@ -34,7 +34,7 @@
 			$dbSites = $stmt->fetchAll();
 
 			for ($i = 0; $i < count($dbSites) ; $i++) { 
-				array_push($sites, '{"name": "' . $dbSites[$i]['site_url'] . '", "site": "' . $dbSites[$i]['site_title'] . '"}');
+				array_push($sites, '{"name": "' . $dbSites[$i]['siteUrl'] . '"}');
 			}
 
 			echo json_encode($sites);

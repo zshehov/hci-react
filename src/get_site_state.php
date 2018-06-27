@@ -4,7 +4,7 @@
 
 	$host = "localhost";
 	$db = "web";
-	$user = "user";
+	$user = "root";
 	$pass = "asdf";
 
 
@@ -21,7 +21,7 @@
 	}
 	else if(isset($isAuthenticated['authUser'])){
 
-		$query = 'Select state from user_sites INNER JOIN users ON user_sites.userId=users.UserId where user=? AND user_sites.site_title=?';
+		$query = 'Select state from user_sites INNER JOIN users ON user_sites.userId=users.UserId where user=? AND user_sites.siteUrl=?';
 		try{
 
 			$conn = new PDO ("mysql:host=$host;dbname=$db;port=3306;charset=utf8",$user,$pass);

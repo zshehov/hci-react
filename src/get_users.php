@@ -3,7 +3,7 @@
 
 	$host = "localhost";
 	$db = "web";
-	$user = "user";
+	$user = "root";
 	$pass = "asdf";
 
 	$usersList = [];

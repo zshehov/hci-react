@@ -3,7 +3,7 @@
 
 	$host = "localhost";
 	$db = "web";
-	$user = "user";
+	$user = "root";
 	$pass = "asdf";
 
 
@@ -29,9 +29,9 @@
 
 		$query = '';
 		if ($newState == 'frozen' || $newState == 'running'){
-			$query = 'update user_sites set state=? where site_url=? and userId=(select userId from users where user=?)';
+			$query = 'update user_sites set state=? where siteUrl=? and userId=(select userId from users where user=?)';
 		} else if ($newState == 'deleted'){
-			$query = 'delete from user_sites where site_url=? and userId=(select userId from users where user=?)';
+			$query = 'delete from user_sites where siteUrl=? and userId=(select userId from users where user=?)';
 		}
 
 		try{

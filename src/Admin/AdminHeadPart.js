@@ -20,14 +20,11 @@ class AdminHeadPart extends React.Component{
 				<Grid padded='vertically' verticalAlign='middle' columns={15} centered container  stackable >
 					<Menu size='huge' fluid  color='teal' inverted tabular>
 						<Menu.Item as={NavLink} to={this.props.match.url + '/users'} component='Users' >Users</Menu.Item>
-						<Menu.Item as={NavLink} to={this.props.match.url + '/websites'} component='Users'  >WebSites</Menu.Item>
 						<Menu.Item as={NavLink} to={this.props.match.url + '/blacklist'} component='GlobalBlackList'  >GlobalBlackList</Menu.Item>
 						<Menu.Item as={NavLink} to={this.props.match.url + '/addAcc'} component='AddAdminAccount' >Add Admin Account</Menu.Item>
-						<Menu.Item as={NavLink} to={this.props.match.url + '/banAcc'} component='BanAccount' >Ban Account</Menu.Item>
 						<Menu.Menu position='right'>
 							<Dropdown  item position='right' text={sessionStorage.getItem('userName')} >
 								<Dropdown.Menu>
-									<MenuItem as={NavLink} to={'/profileSettings/'+sessionStorage.getItem('userName')}>Settings</MenuItem>
 									<MenuItem as={NavLink} to={"/logout"}>Logout</MenuItem>
 								</Dropdown.Menu>
 							</Dropdown>

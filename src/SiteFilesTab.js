@@ -51,7 +51,7 @@ class SiteFilesTab extends React.Component {
 		formData.append('userName', sessionStorage.getItem('userName'))
 
 
-		return fetch('http://vm-54-246-196-205.rosettavm.com:80/web/exercise/upload_file.php', {
+		return fetch('http://localhost:80/web/exercise/upload_file.php', {
 			method: 'POST',
 			headers: {
 					'Authorization': sessionStorage.getItem('jwt')

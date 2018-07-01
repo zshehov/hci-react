@@ -4,7 +4,7 @@
 
 	$host = "localhost";
 	$db = "web";
-	$user = "root";
+	$user = "user";
 	$pass = "asdf";
 
 

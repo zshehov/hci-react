@@ -1,7 +1,7 @@
 import React from 'react'
 import { Item, Radio, Icon, List, Button, Modal	} from 'semantic-ui-react'
 import DirectoryList from './DirectoryList.js'
-import { makePostFileRequest } from './ServerRequests.js';
+import { postFilePromise } from './ServerRequests.js';
 import './UserContent.css'
 
 
@@ -51,17 +51,11 @@ class SiteFilesTab extends React.Component {
 		formData.append('userName', sessionStorage.getItem('userName'))
 
 
-		return fetch('http://localhost:80/web/exercise/upload_file.php', {
-			method: 'POST',
-			headers: {
-					'Authorization': sessionStorage.getItem('jwt')
-		}, // 'GET', 'PUT', 'DELETE', etc.
-			body: formData	// Coordinate the body type with 'Content-Type'
-		})
-		.then(response =>  
-			response.json())
 
-		.then(jsonResponse => {
+
+
+		postFilePromise(formData, 'upload_file').then(jsonResponse => {
+			console.log(jsonResponse);
 			if(jsonResponse['error'] !== undefined){
 				this.handleFailOpen();
 			}else{

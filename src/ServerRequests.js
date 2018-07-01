@@ -1,3 +1,4 @@
+var SERVER = "vm-54-246-196-205.rosettavm.com";
 export function makePostRequest(request, handler){
 	let promise = new Promise(function(resolve,reject){
 		var resp = postReq(request, handler);
@@ -12,8 +13,23 @@ export function makePostRequest(request, handler){
 
 }
 
+export function postFilePromise(file, handler){
+
+	// returns a promise with the response json'ed
+
+	return fetch('http://' + SERVER + ':80/web/exercise/' + handler + '.php', {
+			method: 'POST',
+			headers: {
+					'Authorization': sessionStorage.getItem('jwt')
+		}, // 'GET', 'PUT', 'DELETE', etc.
+			body: file	// Coordinate the body type with 'Content-Type'
+		}).then(response =>  
+			response.json())
+}
+
+
 function postReq(payload, handler){
-	let URL = 'http://localhost:80/web/exercise/' + handler + '.php';
+	let URL = 'http://' + SERVER + ':80/web/exercise/' + handler + '.php';
 	console.log(JSON.stringify(payload));
 	var fetchResponse = fetch(URL, {
 		method: 'POST',
@@ -49,7 +65,7 @@ export function makeGetRequest(queryString, handler){
 }
 
 function getReq(queryString, handler){
-	let URL = 'http://localhost:80/web/exercise/' + handler + ".php?" + queryString;
+	let URL = 'http://' + SERVER + ':80/web/exercise/' + handler + ".php?" + queryString;
 	//console.log(JSON.stringify(payload));
 	var fetchResponse = fetch(URL, {
 		method: 'GET',

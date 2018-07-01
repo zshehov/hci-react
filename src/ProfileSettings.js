@@ -5,7 +5,7 @@ import HeaderPart from './HeaderPart'
 import './UserContent.css'
 import './SegmentColors.css'
 import Plans from './Plans'
-import { makeGetRequest } from './ValidateForm.js'
+import { makeGetRequest } from './ServerRequests.js'
 
 
 class ProfileSettings extends Component{

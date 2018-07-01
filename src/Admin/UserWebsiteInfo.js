@@ -1,6 +1,6 @@
 import React from 'react'
 import { Segment, List, Icon, Radio, Modal, Header, Button } from 'semantic-ui-react'
-import { makeGetRequest, makePostRequest} from '../ValidateForm'
+import { makeGetRequest, makePostRequest} from '../ServerRequests'
 
 class WebSites extends React.Component{
 

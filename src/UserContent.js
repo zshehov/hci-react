@@ -5,7 +5,7 @@ import UserSiteInfo from './UserSiteInfo.js'
 import './UserContent.css'
 import { WithParametersRouteComponent } from './WithParametersRouteComponent.js'
 import { Route, withRouter, Redirect, Switch } from 'react-router-dom'
-import { makeGetRequest } from './ValidateForm.js'
+import { makeGetRequest } from './ServerRequests.js'
 
 class UserContent extends React.Component{
 

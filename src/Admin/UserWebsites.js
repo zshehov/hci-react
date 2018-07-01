@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion, Icon, List, Dimmer, Loader } from 'semantic-ui-react' 
-import { makeGetRequest } from '../ValidateForm'
+import { makeGetRequest } from '../ServerRequests'
 import { NavLink, Redirect, Route } from "react-router-dom";
 import WebSites from './UserWebsiteInfo'
 

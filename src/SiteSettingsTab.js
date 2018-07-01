@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon, Button, List, Header, Grid, Form, Divider, Modal, Radio, Segment } from 'semantic-ui-react'
-import { makeGetRequest, makePostRequest } from './ValidateForm.js'
+import { makeGetRequest, makePostRequest } from './ServerRequests.js'
 import { withRouter } from 'react-router-dom'
 
 class SiteSettingsTab extends React.Component{

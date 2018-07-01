@@ -1,7 +1,7 @@
 import React from 'react'
 import { Item, Radio, Icon, List, Button, Modal	} from 'semantic-ui-react'
 import DirectoryList from './DirectoryList.js'
-import { makePostFileRequest } from './ValidateForm.js';
+import { makePostFileRequest } from './ServerRequests.js';
 import './UserContent.css'
 
 

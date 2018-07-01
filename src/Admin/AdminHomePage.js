@@ -23,7 +23,7 @@ class AdminHomePage extends Component{
 	componentDidMount(){
 
 		var token = sessionStorage.getItem('jwt');
-		let URL = 'http://vm-54-246-196-205.rosettavm.com:80/web/exercise/AccessAllowed.php';
+		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';
 		fetch(URL, {
 			method: 'POST',
 			headers:{

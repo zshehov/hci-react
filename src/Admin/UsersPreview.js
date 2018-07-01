@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeGetRequest } from '../ValidateForm';
+import { makeGetRequest } from '../ServerRequests';
 import {Menu , Grid, Segment, Dimmer, Loader, Header, Input } from 'semantic-ui-react'
 import { NavLink, Switch, Route, Redirect } from "react-router-dom"
 import UsersInfo from './UsersInfo'

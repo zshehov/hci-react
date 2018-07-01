@@ -2,7 +2,7 @@
 	
 	$host = "localhost";
 	$db = "web";
-	$user = "root";
+	$user = "user";
 	$pass = "asdf";
 
 	$data = json_decode(file_get_contents('php://input'), true);

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Input, Loader, Dimmer, Button, Modal, Header } from 'semantic-ui-react'
 import { NavLink, withRouter } from 'react-router-dom'
 import "./UserContent.css"
-import { makePostRequest } from './ValidateForm.js'
+import { makePostRequest } from './ServerRequests.js'
 class SideMenu extends Component {
 
   state = { open: false, newSite : '' }

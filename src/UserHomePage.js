@@ -20,7 +20,7 @@ class UserHomePage extends Component{
 
 		var token = sessionStorage.getItem('jwt');
 		//console.log(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
-		let URL = 'http://localhost:80/web/exercise/AccessAllowed.php';
+		let URL = 'http://vm-54-246-196-205.rosettavm.com:80/web/exercise/AccessAllowed.php';
 		fetch(URL, {
 			method: 'POST',
 			headers:{

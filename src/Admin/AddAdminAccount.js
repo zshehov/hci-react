@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid, Input, Segment, Modal, Header, Dropdown } from 'semantic-ui-react'
 import { withRouter, Redirect } from "react-router-dom";
-import { makePostRequest } from '../ValidateForm.js'
+import { makePostRequest } from '../ServerRequests.js'
 
 
 class AddAdminAccount extends Component {

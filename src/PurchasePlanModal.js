@@ -3,7 +3,7 @@ import { Button, Modal } from 'semantic-ui-react'
 import SignUpForm from './SignUpForm.js'
 import LoginForm from './LoginForm.js'
 import './UserHomePage.css'
-import {makePostRequest} from './ValidateForm.js'
+import {makePostRequest} from './ServerRequests.js'
 
 
 

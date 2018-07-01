@@ -1,6 +1,6 @@
 import React from 'react'
 import { Item, List, Divider, Header, Segment, Radio, Modal, Button } from 'semantic-ui-react'
-import { makeGetRequest , makePostRequest } from '../ValidateForm'
+import { makeGetRequest , makePostRequest } from '../ServerRequests'
 
 
 class BasicUserInfo extends React.Component{

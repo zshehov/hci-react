@@ -5,7 +5,7 @@ import HeaderPart from './HeaderPart'
 import './UserContent.css'
 import './SegmentColors.css'
 import Plans from './Plans'
-import { makeGetRequest } from './ValidateForm.js'
+import { makeGetRequest } from './ServerRequests.js'
 
 
 class ProfileSettings extends Component{
@@ -103,7 +103,7 @@ class ProfileSettings extends Component{
 					  						<Button type='submit' color='teal' floated='right'>Confirm</Button>
 					  					</Form>
 					  				</Segment>
-					  				<Header  color='red'>asfddghgh</Header>
+					  				<Header  color='red'></Header>
 							  </Popup>
 						</Grid.Column>
 						<Grid.Column width={12}>

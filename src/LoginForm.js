@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
-import { makePostRequest } from './ValidateForm.js'
+import { makePostRequest } from './ServerRequests.js'
 
 
 class LoginForm extends Component {

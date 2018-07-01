@@ -5,7 +5,7 @@ import UserSiteInfo from './UserSiteInfo.js'
 import './UserContent.css'
 import { WithParametersRouteComponent } from './WithParametersRouteComponent.js'
 import { Route, withRouter, Redirect, Switch } from 'react-router-dom'
-import { makeGetRequest } from './ValidateForm.js'
+import { makeGetRequest } from './ServerRequests.js'
 
 class UserContent extends React.Component{
 
@@ -30,6 +30,7 @@ class UserContent extends React.Component{
 					// we are here if jsonResponse is not an array and .map fails
 					this.setState({sideMenuItems : []});
 				}
+
 			}).catch(err => {
 				console.log(err); console.log('IT SH*TTED ITSELF IN UserContent'); sessionStorage.clear();this.props.history.replace("/");
 			});
@@ -59,7 +60,7 @@ class UserContent extends React.Component{
 		this.setState(prevState => ( {sideMenuItems : [...prevState.sideMenuItems , {'name' : newSite, 'site' : newSite}]} ));
 	}
 
-handleClick = (e, titleProps) => {
+	handleClick = (e, titleProps) => {
 		const { index } = titleProps
 		const { activeIndex } = this.state
 		const newIndex = activeIndex === index ? -1 : index

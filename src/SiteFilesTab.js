@@ -1,32 +1,32 @@
 import React from 'react'
 import { Item, Radio, Icon, List, Button, Modal	} from 'semantic-ui-react'
 import DirectoryList from './DirectoryList.js'
-import { makePostFileRequest } from './ValidateForm.js';
+import { postFilePromise } from './ServerRequests.js';
 import './UserContent.css'
 
 
 var fileList = [
 	
 	{dir : true, name : 'first dir', data : 
-		[ {dir : false, name : 'asd'}, {dir : false, name : 'wtf'}, { dir : true, name : 'nested dir', data : [ {dir : false, name : 'first'}, {dir : false, name : 'second'} ] } ]	},
+		[ {dir : false, name : 'asd'}, {dir : false, name : 'jesus christ'}, { dir : true, name : 'nested dir', data : [ {dir : false, name : 'first'}, {dir : false, name : 'second'} ] } ]	},
 	{dir : false, name : 'cecko'},
-	{dir : false, name : 'petko'},
+	{dir : false, name : 'first_file'},
 	{dir : true, name : 'second dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'third dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'fourth dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'fifth dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'second dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'third dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'fourth dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]},
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
 	{dir : true, name : 'fifth dir', data :
-		[ {dir: false, name : 'petko'}, {dir : false, name : 'mitkov'} ]}
+		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]}
 
 ];
 
@@ -51,17 +51,11 @@ class SiteFilesTab extends React.Component {
 		formData.append('userName', sessionStorage.getItem('userName'))
 
 
-		return fetch('http://localhost:80/web/exercise/upload_file.php', {
-			method: 'POST',
-			headers: {
-					'Authorization': sessionStorage.getItem('jwt')
-		}, // 'GET', 'PUT', 'DELETE', etc.
-			body: formData	// Coordinate the body type with 'Content-Type'
-		})
-		.then(response =>  
-			response.json())
 
-		.then(jsonResponse => {
+
+
+		postFilePromise(formData, 'upload_file').then(jsonResponse => {
+			console.log(jsonResponse);
 			if(jsonResponse['error'] !== undefined){
 				this.handleFailOpen();
 			}else{

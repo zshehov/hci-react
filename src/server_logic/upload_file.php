@@ -1,6 +1,7 @@
 <?php
 	include 'AccessAllowed.php';
 
+	$SERVER = 'local';
 
 	try {
 		$isAuthenticated = json_decode(authenticate(),TRUE);
@@ -22,7 +23,13 @@
 			echo json_encode(['error' => 'failed to upload']);
 			exit(1);
 		}
-		move_uploaded_file($_FILES['file']['tmp_name'], 'users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
+
+		if($SERVER == 'local'){
+			move_uploaded_file($_FILES['file']['tmp_name'], 'users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
+		} else {
+			move_uploaded_file($_FILES['file']['tmp_name'], '/var/www/html/users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
+		}
+		
 
 		echo json_encode(['success' => 'succeeded in uploading']);
 		

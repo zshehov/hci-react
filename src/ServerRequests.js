@@ -1,4 +1,4 @@
-var SERVER = "vm-54-246-196-205.rosettavm.com";
+var SERVER = true ? "localhost" : "vm-54-246-196-205.rosettavm.com";
 export function makePostRequest(request, handler){
 	let promise = new Promise(function(resolve,reject){
 		var resp = postReq(request, handler);

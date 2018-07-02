@@ -4,6 +4,7 @@ import './SegmentColors.css'
 import UserContent from './UserContent.js'
 import { withRouter } from 'react-router-dom'
 import HeaderPart from './HeaderPart'
+import { makePostRequest } from './ServerRequests.js'
 
 class UserHomePage extends Component{
 
@@ -18,28 +19,20 @@ class UserHomePage extends Component{
 
 	componentDidMount(){
 
-		var token = sessionStorage.getItem('jwt');
-		//console.log(this.state.accessAllowed+ "  "+this.state.errorMessage  + "  " + this.state.requestDone);
-		let URL = 'http://vm-54-246-196-205.rosettavm.com:80/web/exercise/AccessAllowed.php';
-		fetch(URL, {
-			method: 'POST',
-			headers:{
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Authorization' :  token
-			},
-			body: JSON.stringify({"userId": this.props.match.params.userId})
-		}).then(
-		(response) => {
-			//console.log(response.status);
-			if(response.status === 200){
-				//console.log("Verified");
-			 	this.setState({accessAllowed : true, requestDone : true});
-			}
-			else{
-				this.setState({accessAllowed : false, errorMessage : response.status + "\n" + response.statusText, requestDone : true});
-			}
-		});
+		makePostRequest({"userName": this.props.match.params.userId}, 'initial_access').then(
+			(response) => {
+				if(response['success'] == 'gg'){
+					//console.log("Verified");
+				 	this.setState({accessAllowed : true, requestDone : true});
+				} else {
+					this.setState({accessAllowed : false, errorMessage : response['error'], requestDone : true});
+					sessionStorage.clear();this.props.history.replace("/")
+				}
+
+			}).catch(err => {
+				console.log(err); console.log('IT SH*TTED ITSELF IN UserHomePage');
+				sessionStorage.clear();this.props.history.replace("/")
+			})
 	}
 	
 	render(){

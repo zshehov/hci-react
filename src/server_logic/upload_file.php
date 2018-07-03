@@ -25,9 +25,15 @@
 		}
 
 		if($SERVER == 'local'){
-			move_uploaded_file($_FILES['file']['tmp_name'], 'users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
+			$file_wanted_path = 'users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name'];
 		} else {
-			move_uploaded_file($_FILES['file']['tmp_name'], '/var/www/html/users/' . $_POST['userName'] . '/uploads/' . $_FILES['file']['name']);
+			$file_wanted_path = '/var/www/users/' . $_POST['userName'] . '/sites/' . $_POST['siteUrl'] . "/" . $_FILES['file']['name'];
+		}
+
+		if($SERVER == 'local'){
+			move_uploaded_file($_FILES['file']['tmp_name'], $file_wanted_path);
+		} else {
+			move_uploaded_file($_FILES['file']['tmp_name'], $file_wanted_path);
 		}
 		
 

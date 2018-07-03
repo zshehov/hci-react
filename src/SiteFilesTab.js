@@ -49,9 +49,7 @@ class SiteFilesTab extends React.Component {
 	
 		formData.append('file',	event.target.files[0])
 		formData.append('userName', sessionStorage.getItem('userName'))
-
-
-
+		formData.append('siteUrl', this.props.siteUrl)
 
 
 		postFilePromise(formData, 'upload_file').then(jsonResponse => {

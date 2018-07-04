@@ -29,7 +29,7 @@
 			$conn = new PDO ("mysql:host=$host;dbname=$db;port=3306;charset=utf8",$user,$pass);
 			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			$stmt = $conn->prepare($query);
-			$stmt->execute([$_GET['userId']]);
+			$stmt->execute([$_GET['userName']]);
 
 			$dbSites = $stmt->fetchAll();
 

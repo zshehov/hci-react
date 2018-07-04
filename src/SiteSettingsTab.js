@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 class SiteSettingsTab extends React.Component{
 
-	state = { open: false, radioState : null, nextStateInText : null , siteDeletion : false}
+	state = { open: false, radioState : null, nextStateInText : null , siteDeletion : false, siteSize : 0 }
 
 	closeModal = () => {
 		this.setState({ open: false });
@@ -31,7 +31,7 @@ class SiteSettingsTab extends React.Component{
 			makeGetRequest(queryString,'get_site_state').then(
 			(response) => {
 				try{
-					this.setState({radioState : response === 'running'});
+					this.setState({radioState : response['state'] === 'running', siteSize : response['size']});
 				} catch(err) {
 					// we are here if jsonResponse sucks for some reason
 					this.setState({radioState : false});
@@ -101,7 +101,7 @@ class SiteSettingsTab extends React.Component{
 							</List.Item>
 							<List.Item>
 								<List.Header>Size on host:</List.Header>
-								128 MB
+								{this.state.siteSize}
 							</List.Item>
 							<Divider hidden/>
 

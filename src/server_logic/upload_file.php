@@ -34,6 +34,8 @@
 			move_uploaded_file($_FILES['file']['tmp_name'], $file_wanted_path);
 		} else {
 			move_uploaded_file($_FILES['file']['tmp_name'], $file_wanted_path);
+			exec("sudo /var/www/html/scripts/unzip.sh " . $file_wanted_path . ' /var/www/users/' . $_POST['userName'] . '/sites/' . $_POST['siteUrl'] . "/" );
+         	unlink($file_wanted_path);
 		}
 		
 

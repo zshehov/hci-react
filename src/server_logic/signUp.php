@@ -36,7 +36,7 @@ try{
 			if($SERVER == 'local'){
 				$succ = mkdir('./users/'.$data['user'].'/sites', 0777, true);	
 			} else {
-				$succ = mkdir('/var/www/users/'.$data['user'].'/sites, 0777, true);
+				$succ = mkdir('/var/www/users/'.$data['user'].'/sites', 0777, true);
 			}
 
 		}else{

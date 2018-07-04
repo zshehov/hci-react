@@ -1,37 +1,13 @@
 import React from 'react'
 import { Item, Radio, Icon, List, Button, Modal	} from 'semantic-ui-react'
 import DirectoryList from './DirectoryList.js'
-import { postFilePromise } from './ServerRequests.js';
+import { postFilePromise, makeGetRequest, getReqNOJSON } from './ServerRequests.js';
 import './UserContent.css'
 
 
-var fileList = [
-	
-	{dir : true, name : 'first dir', data : 
-		[ {dir : false, name : 'asd'}, {dir : false, name : 'jesus christ'}, { dir : true, name : 'nested dir', data : [ {dir : false, name : 'first'}, {dir : false, name : 'second'} ] } ]	},
-	{dir : false, name : 'cecko'},
-	{dir : false, name : 'first_file'},
-	{dir : true, name : 'second dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'third dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'fourth dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'fifth dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'second dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'third dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'fourth dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]},
-	{dir : true, name : 'fifth dir', data :
-		[ {dir: false, name : 'first_file'}, {dir : false, name : 'second_file'} ]}
-
-];
 
 class SiteFilesTab extends React.Component {
-		state = { successModalOpen: false, failModalOpen: false}
+	state = { successModalOpen: false, failModalOpen: false, fileList: []}
 
 	handleSuccessOpen = () => this.setState({ successModalOpen: true })
 	handleSuccessClose = () => this.setState({ successModalOpen: false })
@@ -42,15 +18,10 @@ class SiteFilesTab extends React.Component {
 	handleUpload = (event) => {
 
 		console.log(event.target.files[0]);
-
-
 		const formData = new FormData()
-
-	
 		formData.append('file',	event.target.files[0])
 		formData.append('userName', sessionStorage.getItem('userName'))
 		formData.append('siteUrl', this.props.siteUrl)
-
 
 		postFilePromise(formData, 'upload_file').then(jsonResponse => {
 			console.log(jsonResponse);
@@ -58,10 +29,37 @@ class SiteFilesTab extends React.Component {
 				this.handleFailOpen();
 			}else{
 				this.handleSuccessOpen();
+				this.getFilesForSite();
 			}
 		})
 		.catch(error => console.error(error))
 
+	}
+
+
+	getFilesForSite = () => {
+		var queryString ='userName=' + sessionStorage.getItem('userName') + "&siteUrl=" + this.props.siteUrl;
+		try{
+			makeGetRequest(queryString,'get_files_for_site').then(
+			(response) => {
+				try{
+					let temp = response.map(item => (JSON.parse(item)));
+					this.setState({fileList : temp});
+				} catch(err) {
+					// we are here if jsonResponse is not an array and .map fails
+					this.setState({fileList : []});
+				}
+
+			}).catch(err => {
+				console.log(err); console.log('IT SH*TTED ITSELF IN SiteFilesTab'); sessionStorage.clear();this.props.history.replace("/");
+			});
+		}catch (err){
+			//exception logic
+		}
+	}
+
+	componentDidMount(){
+		this.getFilesForSite();
 	}
 
 	render(props) {
@@ -71,7 +69,7 @@ class SiteFilesTab extends React.Component {
 			<List size='huge' className='overflowY-SitePanel-wrapper'>
 			<input name="asdasd" type="file" onChange={this.handleUpload} />
 
-				<DirectoryList fileList={fileList} dirName="root"/>
+				<DirectoryList fileList={this.state.fileList} dirName="root"/>
 
 				<Modal
 				open={this.state.successModalOpen}

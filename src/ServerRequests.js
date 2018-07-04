@@ -85,4 +85,3 @@ function getReq(queryString, handler){
 		});
 	return fetchResponse;
 }
-

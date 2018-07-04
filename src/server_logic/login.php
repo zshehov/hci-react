@@ -8,7 +8,7 @@ $host = "localhost";
 $db = "web";
 $user = "user";
 $pass = "asdf";
-$query = "Select user,password,type from users where user=? and password=?";
+$query = "Select user,password,type from users where user=?";
 
 try{
 
@@ -23,49 +23,58 @@ try{
 		echo ' { "error" : "Please enter password"} ';
 
 	}else{
-		$stmt->execute([$data['user'],hash('sha1',$data['passwd'])]);
+
+		$stmt->execute([$data['user']]);
 
 		if($stmt->rowCount() == 0){
 			echo ' { "error" : "Invalid username or password"} ';
 
 		}else{
+
 			$row = $stmt->fetch();
+			if(!password_verify($data['passwd'],$row['password']) ){
+				
+				echo ' { "error" : "Invalid username or password"} ';
 
+			}else{
 
-			$tokenId    = 3;//base64_encode(mcrypt_create_iv(32));
-			$issuedAt   = time();
-		    $notBefore  = $issuedAt - 10;             //Adding 10 seconds
-		    $expire     = $notBefore + 60;            // Adding 60 seconds
-		    $serverName = "webhost"; // Retrieve the server name from config file
-    		$secretKey  = "verySecretKey";
-		
-		    $data = [
-		        'iat'  => $issuedAt,         // Issued at: time when the token was generated
-		        'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
-		        'iss'  => $serverName,       // Issuer
-		        'nbf'  => $notBefore,        // Not before
-		       // 'exp'  => $expire,           // Expire
-		        'data' => [                  // Data related to the signer user
-		            'userName' => $row['user'], // User name
-		        	'type' => $row['type']	
-		        ]
-		    ];
-		   
+				$tokenId    = 3;//base64_encode(mcrypt_create_iv(32));
+				$issuedAt   = time();
+			    $notBefore  = $issuedAt - 10;             //Adding 10 seconds
+			    $expire     = $notBefore + 60;            // Adding 60 seconds
+			    $serverName = "webhost"; // Retrieve the server name from config file
+	    		$secretKey  = "verySecretKey";
+			
+			    $data = [
+			        'iat'  => $issuedAt,         // Issued at: time when the token was generated
+			        'jti'  => $tokenId,          // Json Token Id: an unique identifier for the token
+			        'iss'  => $serverName,       // Issuer
+			        'nbf'  => $notBefore,        // Not before
+			       // 'exp'  => $expire,           // Expire
+			        'data' => [                  // Data related to the signer user
+			            'userName' => $row['user'], // User name
+			        	'type' => $row['type']	
+			        ]
+			    ];
+			   
 
-		    $jwt = JWT::encode(
-		    	$data,
-		    	$secretKey,
-		    	'HS512'
-		    );
+			    $jwt = JWT::encode(
+			    	$data,
+			    	$secretKey,
+			    	'HS512'
+			    );
 
-		   	$toSend = [
+			   	$toSend = [
 
-		   		'jwt' => $jwt,
-		   		'data' => $row
-		   	];
-		   	
-   			echo json_encode($toSend);
+			   		'jwt' => $jwt,
+			   		'data' => $row
+			   	];
+			   	
+	   			echo json_encode($toSend);
 
+			}
+
+			
 		}
 	}
 }catch(PDOException $e){

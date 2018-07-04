@@ -31,7 +31,7 @@ try{
 
 		if($stmt->rowCount() == 0){
 			$stmt = $conn->prepare($registerUser);
-			$stmt->execute([$data['user'],hash('sha1',$data['password']),chooseAccountType()]);
+			$stmt->execute([$data['user'], password_hash($data['password'], PASSWORD_DEFAULT), chooseAccountType()]);
 			echo ' { "success" : "Sign Up successful :)"} ';
 			if($SERVER == 'local'){
 				$succ = mkdir('./users/'.$data['user'].'/sites', 0777, true);	

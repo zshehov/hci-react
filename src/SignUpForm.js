@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Grid, Input, Segment, Modal, Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 import { makePostRequest } from './ServerRequests.js'
+//import { verify } from './verifyForm.js'
 
 
 class SignUpForm extends Component {
@@ -15,6 +16,77 @@ class SignUpForm extends Component {
 					showSignUp: false,
 					isRegistered: false
 		};
+
+	}
+
+	verify = (event) => {
+		var user = this.state.user;
+		var password = this.state.password;
+		var verifyPass= this.state.repeatPassword;
+
+		if(!this.verifyUser(user)){
+
+			return false;
+		}
+
+		if(!this.verifyPassword(password)){
+			
+			return false;
+		}
+
+		if(verifyPass!=password){
+			
+			this.setState({ error : "*Passwords don't match" });
+			return false;
+
+		}else{
+			
+			return true;
+
+		}
+		
+	}
+
+    verifyUser = (user) => {
+    	alert(user);
+		var response = false;
+		if(user.match("^([A-Za-z0-9]|\_){3,10}$")){
+			response = true;
+		}else if(user.length<3){
+
+			this.setState({ error : '*User name too short' });
+
+		}else if(user.length>10){
+
+			this.setState({ error : '*User name too long' });
+
+		}else if(user.match('[^A-Za-z0-9_]')){
+
+			this.setState({ error : '*User name can contain only alphanumeric symbols and _' });
+
+		}
+		
+		return response;
+
+	}
+
+	verifyPassword = (password) => {
+		alert(password);
+		var response = false;
+		if(password.length<6 ){
+			response = false;
+			this.setState({ error : '*Password too short' });
+
+		}
+		else if( password.search("[A-Z]+")<0 || password.search("[a-z]+")<0 || password.search("[0-9]+")<0){
+
+			this.setState({ error : '*Password too weak. Must contain upperCase letter and number.' });
+		}
+		else{
+			response = true;
+		}
+		
+		return response;
 	}
 
 	componentDidMount(){
@@ -26,10 +98,7 @@ class SignUpForm extends Component {
 	registerUser = (event) => {
 		if(this.state.error) this.setState({error:''});
 
-		if(this.state.password !== this.state.repeatPassword){
-			this.setState({error: "*Passwords don't match"});
-		}
-		else{
+		if( this.verify() == true ){
 			makePostRequest(this.state, 'signUp').then(
 				(response) => {
 					console.log(response['error'])
@@ -43,6 +112,9 @@ class SignUpForm extends Component {
 				(error) => {
 					console.log(error);
 				});
+		}
+		else{
+			return;
 		} 
 
 	}
@@ -111,6 +183,10 @@ class SignUpForm extends Component {
     		);
     	}
   }
+
+
+	
+
 }
 
 export default withRouter(SignUpForm);

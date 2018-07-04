@@ -3,6 +3,8 @@
 include "JWT.php";
 use Firebase\JWT\JWT;
 
+$SERVER = 'rosetta';
+
 $data = json_decode(file_get_contents('php://input'), true);
 $host = "localhost";
 $db = "web";
@@ -31,7 +33,11 @@ try{
 			$stmt = $conn->prepare($registerUser);
 			$stmt->execute([$data['user'],hash('sha1',$data['password']),chooseAccountType()]);
 			echo ' { "success" : "Sign Up successful :)"} ';
-			$succ = mkdir('./users/'.$data['user'], 0777, true);
+			if($SERVER == 'local'){
+				$succ = mkdir('./users/'.$data['user'].'/sites', 0777, true);	
+			} else {
+				$succ = mkdir('/var/www/users/'.$data['user'].'/sites', 0777, true);
+			}
 
 		}else{
 

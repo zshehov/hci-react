@@ -12,7 +12,7 @@
 			if(isset($_GET['adminId'])){
 				$userId = $_GET['adminId'];
 			}else{
-				$userId = $_GET['userId'];	
+				$userId = $_GET['userName'];	
 			}
 		}else if ( $_SERVER['REQUEST_METHOD'] === 'POST' && $_FILES /* dem hackz  :/ */) {
 			$userId	= $_POST['userName']; 

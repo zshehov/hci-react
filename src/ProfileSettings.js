@@ -23,7 +23,7 @@ class ProfileSettings extends Component{
 	}
 
 	componentDidMount(){
-		var queryString ='userId=' + this.props.match.params.userId;
+		var queryString = 'userName=' + this.props.match.params.userId;
 		try{
 			makeGetRequest(queryString,'get_profile_settings').then(
 			(response) => {

@@ -1,5 +1,6 @@
 <?php
 	include 'AccessAllowed.php';
+	$SERVER = 'local';
 
 	$host = "localhost";
 	$db = "web";
@@ -35,6 +36,11 @@
 			$stmt = $conn->prepare($query);
 			$stmt->execute([$userName, $siteUrl]);
 
+			if($SERVER == 'local'){
+				$succ = mkdir('./users/'.$data['userName'].'/sites/'.$siteUrl, 0777, true);
+			} else {
+				$succ = mkdir('/var/www/html/users/'.$data['userName'].'/sites/'.$siteUrl, 0777, true);
+			}
 			echo json_encode(["success_added" => $siteUrl]);
 			exit(0);
 			

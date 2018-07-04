@@ -46,6 +46,7 @@
 				echo json_encode(["success_changed" => $siteUrl, "state" => $newState]);
 			} else if ($newState == 'deleted') {
 				$stmt->execute([$siteUrl, $userName]);
+				exec('sudo /var/www/html/scripts/delete-site.sh ' . '/var/www/users/' . $userName . '/sites/' . $siteUrl);
 				echo json_encode(["success_deleted" => $siteUrl]);
 			}
 

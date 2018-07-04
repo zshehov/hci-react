@@ -26,7 +26,7 @@ class SiteSettingsTab extends React.Component{
 	}
 
 	componentDidMount() {
-		var queryString = 'userName' + sessionStorage.getItem('userName') + '&siteId=' + this.props.siteName;
+		var queryString = 'userName=' + sessionStorage.getItem('userName') + '&siteId=' + this.props.siteName;
 		try{
 			makeGetRequest(queryString,'get_site_state').then(
 			(response) => {

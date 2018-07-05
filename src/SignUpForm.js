@@ -48,7 +48,7 @@ class SignUpForm extends Component {
 	}
 
     verifyUser = (user) => {
-    	alert(user);
+   
 		var response = false;
 		if(user.match("^([A-Za-z0-9]|\_){3,10}$")){
 			response = true;
@@ -71,7 +71,7 @@ class SignUpForm extends Component {
 	}
 
 	verifyPassword = (password) => {
-		alert(password);
+
 		var response = false;
 		if(password.length<6 ){
 			response = false;

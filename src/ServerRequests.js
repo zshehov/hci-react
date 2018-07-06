@@ -17,7 +17,7 @@ export function postFilePromise(file, handler){
 
 	// returns a promise with the response json'ed
 
-	return fetch('http://' + SERVER + ':80/web/exercise/' + handler + '.php', {
+	return fetch('http://' + SERVER + ':80/web_hosting/' + handler + '.php', {
 			method: 'POST',
 			headers: {
 					'Authorization': sessionStorage.getItem('jwt')
@@ -29,7 +29,7 @@ export function postFilePromise(file, handler){
 
 
 function postReq(payload, handler){
-	let URL = 'http://' + SERVER + ':80/web/exercise/' + handler + '.php';
+	let URL = 'http://' + SERVER + ':80/web_hosting/' + handler + '.php';
 	console.log(JSON.stringify(payload));
 	var fetchResponse = fetch(URL, {
 		method: 'POST',
@@ -65,7 +65,7 @@ export function makeGetRequest(queryString, handler){
 }
 
 function getReq(queryString, handler){
-	let URL = 'http://' + SERVER + ':80/web/exercise/' + handler + ".php?" + queryString;
+	let URL = 'http://' + SERVER + ':80/web_hosting/' + handler + ".php?" + queryString;
 	//console.log(JSON.stringify(payload));
 	var fetchResponse = fetch(URL, {
 		method: 'GET',

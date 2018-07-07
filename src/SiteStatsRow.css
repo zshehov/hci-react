@@ -1,0 +1,10 @@
+#start{
+	border-radius: 0px;
+	border-left : 1px solid grey;
+	border-right : 1px solid grey;
+}
+
+#middle{
+	border-radius: 0px;
+	border-right : 1px solid grey;
+}

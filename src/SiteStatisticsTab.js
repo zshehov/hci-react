@@ -1,15 +1,19 @@
 import React from 'react'
-import { Container, Segment, Table, Header, Divider, Statistic, Icon } from 'semantic-ui-react';
+import { Container, Segment, Table, Header, Divider, Statistic, Icon, Button } from 'semantic-ui-react';
 import SiteStatsRow from './SiteStatsRow'
+import { withRouter} from 'react-router-dom'
 
 const SiteStatistics = (props) => {
 	return (
 		<Container centered>
 		<Segment centered textAlign='justified'  basic> 
-			<Table.Header fullWidth>						
-				<Header  color='brown' size='large'>Monthly site views</Header>	
-			</Table.Header>
-			<Table    floated='left'  textAlign='center'  basic >
+			<Segment basic>						
+				<Header  color='brown' size='large' floated='left'>Monthly site views</Header>	
+				<Button floated='right' color='yellow' size='medium'>
+					<a href={`https://vm-54-246-196-205.rosettavm.com:80/users/${props.userId}/sites/${props.siteUrl}`} style={{"color": "white"}} target="_blank">Visit: {props.siteUrl}</a>
+				</Button>
+			</Segment>
+			<Table  padded floated='left'  textAlign='center'  basic >
 				<Table.Body >
 					<SiteStatsRow visits='50'/>
 					<SiteStatsRow visits='40'/>
@@ -72,4 +76,4 @@ const SiteStatistics = (props) => {
 		)
 } 
 
-export default SiteStatistics
+export default withRouter(SiteStatistics);

@@ -18,7 +18,7 @@ const SitePanel = (props) => {
 	return (
 
 	<Switch>
-		<Route path={`${props.match.url}/statistics`} render={props => ( <SiteStatistics/>)} />
+		<Route path={`${props.match.url}/statistics`} render={WithParametersRouteComponent(SiteStatistics, {siteUrl : props.siteId, userId : props.userId})} />
 		<Route path={`${props.match.url}/files`} render={WithParametersRouteComponent(SiteFilesTab, {siteUrl : props.siteId})} />
 		<Route path={`${props.match.url}/apps`} render={props => ( <SiteAppsTab/>)} />
 		<Route path={`${props.match.url}/blacklist`} render={props => ( <Blacklist/>)} />

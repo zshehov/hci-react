@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Segment, Table, Header, Divider, Statistic, Icon, Button } from 'semantic-ui-react';
 import SiteStatsRow from './SiteStatsRow'
-import { withRouter} from 'react-router-dom'
+import { withRouter, NavLink} from 'react-router-dom'
 
 const SiteStatistics = (props) => {
 	return (
@@ -9,8 +9,8 @@ const SiteStatistics = (props) => {
 		<Segment centered textAlign='justified'  basic> 
 			<Segment basic>						
 				<Header  color='brown' size='large' floated='left'>Monthly site views</Header>	
-				<Button floated='right' color='yellow' size='medium'>
-					<a href={`https://vm-54-246-196-205.rosettavm.com:80/users/${props.userId}/sites/${props.siteUrl}`} style={{"color": "white"}} target="_blank">Visit: {props.siteUrl}</a>
+				<Button as={NavLink} to={`/users/${props.userId}/sites/${props.siteUrl}`} target="_blank" floated='right' color='yellow' size='medium'>
+					Visit: {props.siteUrl}
 				</Button>
 			</Segment>
 			<Table  padded floated='left'  textAlign='center'  basic >

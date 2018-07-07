@@ -1,12 +1,8 @@
 <?php
  error_reporting(-1);
-ini_set('display_errors', 'true');
-include './AccessAllowed.php';
-	
-	$host = "localhost";
-	$db = "web";
-	$user = "user";
-	$pass = "asdf";
+	ini_set('display_errors', 'true');
+	include './AccessAllowed.php';
+	require "common.php";
 
 	$isAuthenticated = json_decode(authenticate(),TRUE);
 

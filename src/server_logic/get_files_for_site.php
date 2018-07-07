@@ -1,5 +1,6 @@
 <?php
 	include 'AccessAllowed.php';
+	require 'common.php';
 	
 	try {
 		$isAuthenticated = json_decode(authenticate(),TRUE);
@@ -12,12 +13,10 @@
 	if(isset($isAuthenticated['error'])){
 		echo $isAuthenticated['error'];
 	} else {
-
 		$files =[];
 
-		$dir = "/var/www/users/" .$_GET['userName'] . "/sites/" . $_GET['siteUrl'];
-		exec("/var/www/html/scripts/json-the-tree.sh " . $dir, $files);
-
-		echo json_encode($files);
+		$dir = $users_dir .$_GET['userName'] . "/sites/" . $_GET['siteUrl'];
+		exec($scripts_dir . "json-the-tree.sh " . $dir, $files);
+		echo json_encode($files); 
 	}
 ?>

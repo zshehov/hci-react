@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Radio, Icon, List, Button, Modal	} from 'semantic-ui-react'
+import { Item, Radio, Icon, List, Button, Modal, Form, Input } from 'semantic-ui-react'
 import DirectoryList from './DirectoryList.js'
 import { postFilePromise, makeGetRequest, getReqNOJSON } from './ServerRequests.js';
 import './UserContent.css'
@@ -7,7 +7,7 @@ import './UserContent.css'
 
 
 class SiteFilesTab extends React.Component {
-	state = { successModalOpen: false, failModalOpen: false, fileList: []}
+	state = { successModalOpen: false, failModalOpen: false, fileList: [] }
 
 	handleSuccessOpen = () => this.setState({ successModalOpen: true })
 	handleSuccessClose = () => this.setState({ successModalOpen: false })
@@ -15,11 +15,11 @@ class SiteFilesTab extends React.Component {
 	handleFailOpen = () => this.setState({ failModalOpen: true })
 	handleFailClose = () => this.setState({ failModalOpen: false })
 
-	handleUpload = (event) => {
+	handleUpload = (/*event*/) => {
+		/*event.target.files[0]*/
 
-		console.log(event.target.files[0]);
 		const formData = new FormData()
-		formData.append('file',	event.target.files[0])
+		formData.append('file',	this.uploadInput.files[0])
 		formData.append('userName', sessionStorage.getItem('userName'))
 		formData.append('siteUrl', this.props.siteUrl)
 
@@ -66,8 +66,13 @@ class SiteFilesTab extends React.Component {
 
 		return (
 
+		
+
 			<List size='huge' className='overflowY-SitePanel-wrapper'>
-			<input name="asdasd" type="file" onChange={this.handleUpload} />
+				<Form onSubmit={this.handleUpload}>
+					<input name="asdasd" type="file" ref={ ref => {this.uploadInput = ref;} }/>
+					<Form.Button type="submit" color='teal'>Upload</Form.Button>
+				</Form>
 
 				<DirectoryList fileList={this.state.fileList} dirName="root"/>
 

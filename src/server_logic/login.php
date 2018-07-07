@@ -4,10 +4,7 @@ include "JWT.php";
 use Firebase\JWT\JWT;
 
 $data = json_decode(file_get_contents('php://input'), true);
-$host = "localhost";
-$db = "web";
-$user = "user";
-$pass = "asdf";
+require "common.php";
 $query = "Select user,password,type from users where user=?";
 
 try{

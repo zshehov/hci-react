@@ -1,12 +1,6 @@
 <?php
 	include 'AccessAllowed.php';
-
-
-	$host = "localhost";
-	$db = "web";
-	$user = "user";
-	$pass = "asdf";
-
+	require "common.php";
 
 	try {
 		$isAuthenticated = json_decode(authenticate(),TRUE);
@@ -27,11 +21,13 @@
 			$conn = new PDO ("mysql:host=$host;dbname=$db;port=3306;charset=utf8",$user,$pass);
 			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			$stmt = $conn->prepare($query);
-			$stmt->execute([$_GET['userId'], $_GET['siteId']]);
+			$stmt->execute([$_GET['userName'], $_GET['siteId']]);
 
 			$dbSiteState = $stmt->fetch();
 
-			echo json_encode($dbSiteState['state']);
+			$siteSize = shell_exec($scripts_dir . "get_site_size.sh " . $users_dir . $_GET['userName'] . "/sites/" . $_GET['siteId']);
+
+			echo json_encode(['state' => $dbSiteState['state'], 'size' => $siteSize]);
 
 
 			exit(0);

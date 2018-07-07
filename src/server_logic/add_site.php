@@ -1,12 +1,14 @@
 <?php
 	include 'AccessAllowed.php';
-	$SERVER = 'local';
+/*	$SERVER = 'rosetta';
 
-	$host = "localhost";
+	require "common.php";
 	$db = "web";
 	$user = "user";
 	$pass = "asdf";
+*/
 
+	require 'common.php';
 
 	try {
 		$isAuthenticated = json_decode(authenticate(),TRUE);
@@ -39,8 +41,11 @@
 			if($SERVER == 'local'){
 				$succ = mkdir('./users/'.$data['userName'].'/sites/'.$siteUrl, 0777, true);
 			} else {
-				$succ = mkdir('/var/www/html/users/'.$data['userName'].'/sites/'.$siteUrl, 0777, true);
+				$succ = mkdir($users_dir . $data['userName'].'/sites/'.$siteUrl, 0777, true);
 			}
+			
+			$res = shell_exec("sudo " . $scripts_dir . "add_new_site.sh " . $data['userName'] . " " . $data['siteUrl']); 
+			
 			echo json_encode(["success_added" => $siteUrl]);
 			exit(0);
 			

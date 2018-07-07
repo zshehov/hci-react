@@ -1,11 +1,7 @@
 <?php
 	include 'AccessAllowed.php';
 
-	$host = "localhost";
-	$db = "web";
-	$user = "user";
-	$pass = "asdf";
-
+	require "common.php";
 
 	try {
 		$isAuthenticated = json_decode(authenticate(),TRUE);
@@ -46,7 +42,7 @@
 				echo json_encode(["success_changed" => $siteUrl, "state" => $newState]);
 			} else if ($newState == 'deleted') {
 				$stmt->execute([$siteUrl, $userName]);
-				exec('sudo /var/www/html/scripts/delete-site.sh ' . '/var/www/users/' . $userName . '/sites/' . $siteUrl);
+				exec('sudo ' . $scripts_dir . 'delete-site.sh ' . $userName . ' ' . $siteUrl);
 				echo json_encode(["success_deleted" => $siteUrl]);
 			}
 

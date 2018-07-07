@@ -72,7 +72,7 @@ class UserContent extends React.Component{
 
 			<Grid className="UserContent-grid">
 				<Grid.Row divided stretched>
-					<Grid.Column mobile={16} only="mobile" >
+					<Grid.Column mobile={16} only="tablet mobile" >
 										
 	
 						<Accordion>

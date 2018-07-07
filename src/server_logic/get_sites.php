@@ -1,14 +1,8 @@
 <?php
 	include 'AccessAllowed.php';
+	require "common.php";
 	
 	$sites = [];
-
-
-	$host = "localhost";
-	$db = "web";
-	$user = "user";
-	$pass = "asdf";
-
 
 	try {
 		$isAuthenticated = json_decode(authenticate(),TRUE);

@@ -1,12 +1,15 @@
 <?php
 
 include "JWT.php";
-require "common.php";
 use Firebase\JWT\JWT;
 
 $SERVER = 'rosetta';
 
 $data = json_decode(file_get_contents('php://input'), true);
+$host = "localhost";
+$db = "web";
+$user = "user";
+$pass = "asdf";
 $query = "Select user,password,type from users where user=? and password=?";
 $isUserNameUnique = "Select user from users where user=?";
 $registerUser = "Insert into users (user, password, type) VALUES (?,?,?)";
@@ -28,12 +31,12 @@ try{
 
 		if($stmt->rowCount() == 0){
 			$stmt = $conn->prepare($registerUser);
-			$stmt->execute([$data['user'], password_hash($data['password'], PASSWORD_DEFAULT), chooseAccountType()]);
+			$stmt->execute([$data['user'],hash('sha1',$data['password']),chooseAccountType()]);
 			echo ' { "success" : "Sign Up successful :)"} ';
 			if($SERVER == 'local'){
-				$succ = mkdir('./users/'.$data['user'].'/sites', 0777, true);	
+				$succ = mkdir('./users/'.$data['user'].'/sites', 0777, true);
 			} else {
-				$succ = mkdir($users_dir . $data['user'].'/sites', 0777, true);
+				$succ = mkdir('/var/www/users/'.$data['user'].'/sites', 0777, true);
 			}
 
 		}else{
